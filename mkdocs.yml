@@ -1,0 +1,29 @@
+site_name: aVersionOf_Compositor Line Art Documentation
+
+
+
+theme:
+  name: material
+  palette:
+    - scheme: slate
+      primary: deep purple
+      accent: amber
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+    - scheme: default
+      primary: deep purple
+      accent: amber
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+
+nav:
+  - Home: index.md
+  - Setup: setup.md
+  - Technical Notes: technical-notes.md
+  - Line Types: line-types.md
+  - Examples: examples.md
+  - How It Works: how-it-works.md
+  - Parameter Input Guide: parameter-input-guide.md
