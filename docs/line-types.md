@@ -1,6 +1,6 @@
 ## Line Types:
 
-*(Page is WIP, image exampels coming)*
+*(WIP, clearer examples coming)*
 
 Lines are detected by finding differences in neighboring pixels. This means you can detect lines on any sort of data you want as long as there is some difference. Several Line types are setup by default for common data, and then there are 3 Custom passes you can put anything into.
 
