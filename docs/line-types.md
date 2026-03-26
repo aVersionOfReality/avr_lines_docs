@@ -1,3 +1,7 @@
+## Line Types:
+
+*(Page is WIP, image exampels coming)*
+
 Lines are detected by finding differences in neighboring pixels. This means you can detect lines on any sort of data you want as long as there is some difference. Several Line types are setup by default for common data, and then there are 3 Custom passes you can put anything into.
 
 - Depth based lines are based on the distance between neighboring pixels. The Depth threshold is the distance in World Space that causes a line. So 0.1 threshold is 0.1 meters by default. This means values can be quite small. The Depth Threshold Range scales the width of detected lines based on how closely they meet the threshold.

@@ -1,18 +1,23 @@
 # Technical Notes:
 
-##### Performance:
+## Performance:
+
 - The performance is a flat cost per pixel. It does not matter how complex your geometry is (except for the cost of the geonodes data group). Every pixel is evaluated regardless of what's in it.
 - Due to the limits of the compositor, the performance is significantly worse than in Malt. But it is still fast compared to most methods of creating advanced lines in Blender. If you like these lines but want more options and quality, check out Malt!
 - It is likely that the performance will improve as the Compositor gets more features.
 - The performance is much worse with larger max width! Only use what you need. The values above 10 are more for if you are rendering with higher resolution and down sampling or something. I don't suggest using above 10 unless you have a high end GPU.
 - Due to the weight of the setup, I do not suggest using the Compositor group multiple times, or using multiple width outputs from it. This can cause it to run everything twice. Instead, you would want to mix the input values, not run it twice with different inputs.
-##### Anti-Aliasing:
+
+## Anti-Aliasing:
+
 - Edge detection based on comparing neighbor values does not work well on Anti-Aliased data, because it introduces slight blurring. This causes multiple pixels to detect as lines, which effectively makes extra edges, and thus extra line thickness. This doesn't always matter if you want thick lines anyway, but it messes up threshold detection, especially on Normals. That is why AA needs to be disabled.
 - The Anti-Aliasing node in the Compositor is nowhere near as good as the proper anti-aliasing. Depending on your project, you may lose quality. In that case, you'd want to view this setup as only a viewport preview with reduced quality. For serious renders, you'd want to render the lines separately with no AA.
 - Due to the AA node needing some feathering to work with, certain line thicknesses work better than others. The current setup forces these values to avoid sudden jaggedness. This means that tapered lines can have subtle stepping, but usually it isn't noticeable.
 - Lines less than 1px thick will not AA very well (with any AA method), and will not have full alpha value due to subpixel thickness. There is a minimum line thickness value in the node group that can be set to 1 or 2 to help.
 - There are upcoming improvements expected to AA in the compositor. Mainly, the option to run it before AA instead of after is on the dev tracker. This is what Malt does, and would resolve this issue. But we do not know when it will land.
 - The Raycast node added in 5.1 may allow more options as it can allow line detection before the AA step. But it may be at the cost of worse performance. I'm investigating this for the next version.
-##### Version Issues:
+
+## Version Issues:
+
 - This tool is technically compatible with Blender 5.0, but is best used in 5.1 due to a vram caching bug in 5.0. The cache does not clear properly when changing node networks, so vram use goes crazy until you reload the file. This is not a problem if you only change parameters, not the node connections inside the group.
 - 5.1 introduced clamping of Color AOVs, so they cannot contain values below 0, such as for Normals. This is probably going to be reverted in 5.1.1 until they add a proper Vector type for AOVs. For now, the setup adds a value of 1 to some colors in the shader, then subtracts it in the Compositor. Just keep this in mind if you alter the AOVs.
