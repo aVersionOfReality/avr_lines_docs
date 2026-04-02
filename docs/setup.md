@@ -3,7 +3,20 @@
 
 ## Setup Using the addon:
 
-*(addon is still wip)*
+The Addon is technically an extension and is installed from disk in the Get Extensions section. Afterwards it will show up under both Extensions and Add-ons.
+!![alt text](media/extension_install.png)
+
+Once installed, find the addon options in the N panel of the 3D viewport:
+![alt text](media/setup_addon_panel-1.png)
+
+The various buttons in Setup perform the steps detailed in the Manuel Setup section below. Some will bring up a new window with more options.
+
+For a quick setup, ensure you have a compositor node tree, then select the objects you want lines on and press all the Setup buttons in order. You will see the Warnings resolve. Open Blender's console to see detailed information about what each operation has done.
+
+Use the Batch Cleanup button to bring up options to remove the added node groups and reset settings to defaults.
+
+The Compositor Group Options section manages parameters and connections within the node group. See the Parameter input guide for details.
+![alt text](media/setup_Compositor_group_options-1.png)
 
 ___
 ## Manual setup:
