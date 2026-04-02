@@ -1,0 +1,719 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../technical-notes/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Setup - aVersionOf_Compositor Line Art Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#setup" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="aVersionOf_Compositor Line Art Documentation" class="md-header__button md-logo" aria-label="aVersionOf_Compositor Line Art Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            aVersionOf_Compositor Line Art Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Setup
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="aVersionOf_Compositor Line Art Documentation" class="md-nav__button md-logo" aria-label="aVersionOf_Compositor Line Art Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    aVersionOf_Compositor Line Art Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setup-using-the-addon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup Using the addon:
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manual-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual setup:
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Manual setup:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#settings-inside-the-node-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Settings inside the node group:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../technical-notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Technical Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../line-types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Line Types
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../how-it-works/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How It Works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parameter-input-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parameter Input Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setup-using-the-addon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup Using the addon:
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manual-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual setup:
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Manual setup:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#settings-inside-the-node-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Settings inside the node group:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="setup">Setup</h1>
+<h2 id="setup-using-the-addon">Setup Using the addon:</h2>
+<p>The Addon is technically an extension and is installed from disk in the Get Extensions section. Afterwards it will show up under both Extensions and Add-ons.
+!<img alt="alt text" src="../media/extension_install.png" /></p>
+<p>Once installed, find the addon options in the N panel of the 3D viewport:
+<img alt="alt text" src="../media/setup_addon_panel-1.png" /></p>
+<p>The various buttons in Setup perform the steps detailed in the Manuel Setup section below. Some will bring up a new window with more options.</p>
+<p>For a quick setup, ensure you have a compositor node tree, then select the objects you want lines on and press all the Setup buttons in order. You will see the Warnings resolve. Open Blender's console to see detailed information about what each operation has done.</p>
+<p>Use the Batch Cleanup button to bring up options to remove the added node groups and reset settings to defaults.</p>
+<p>The Compositor Group Options section manages parameters and connections within the node group. See the Parameter input guide for details.
+<img alt="alt text" src="../media/setup_Compositor_group_options-1.png" /></p>
+<hr />
+<h2 id="manual-setup">Manual setup:</h2>
+<p><em>The upcoming addon will automate all of this!</em></p>
+<p><strong>Append the main node groups:</strong></p>
+<ul>
+<li>AVR_Lines: Line_Art</li>
+<li>AVR_Lines: Shader_Data</li>
+<li>AVR_Lines: Geo_Data</li>
+</ul>
+<p><strong>(Optional) Append the setup scripts:</strong></p>
+<ul>
+<li>AVR_lines_setup_AOVs.py</li>
+<li>AVR_lines_setup_Modifiers.py</li>
+<li>AVR_lines_setup_Shader.py</li>
+</ul>
+<p><strong>Create AOVs with these exact names and types, or run AVR_lines_setup_AOVs.py</strong></p>
+<ul>
+<li>AVR_lines_OBJ_ID, VALUE</li>
+<li>AVR_lines_normals, COLOR</li>
+<li>AVR_lines_thresholds, COLOR</li>
+<li>AVR_lines_scales, COLOR</li>
+<li>AVR_lines_custom_IDs, COLOR</li>
+<li>AVR_lines_custom_scales, COLOR</li>
+<li>AVR_lines_marked1, COLOR</li>
+<li>AVR_lines_marked2, COLOR</li>
+<li>AVR_lines_RGB, COLOR</li>
+</ul>
+<p><strong>Render Settings:</strong></p>
+<ul>
+<li>Ensure the Depth pass in enabled in View Layer -&gt; Passes -&gt; Data</li>
+<li>Disable Anti-Aliasing by setting Filter Size to 0 in Render -&gt; Film</li>
+<li>If you want them in the viewport, ensure Compositor is set to Always in the viewport render settings.</li>
+<li>If using Colored lines, Enable Full Precision in the Compositor N Panel -&gt; Options Tab or there will be Z fighting in the viewport</li>
+<li>Ensure the Compositor Device is set to GPU in the same tab (CPU should work but you'll be waiting a long time.)</li>
+</ul>
+<p><strong>Data Groups:</strong></p>
+<p>For any objects you want lines on, add the Geo_Data geometry nodes group as a modifier (after any mesh altering ones), and add the Shader_Data node group to their material. Or use the Modifiers and Shader setup scripts to automatically add these to all selected objects or their materials.</p>
+<p><em>v0.1 Note: Technically, the setup does not require these Data groups to run and only needs them to provide data beyond the defaults. But I have not fully tested this for v0.1, so for now just use them all. In the future there will be better options to not use them unless needed.</em>*</p>
+<p><strong>Compositor:</strong></p>
+<ul>
+<li>Add the Line_Art group to your compositor setup and connect the AOVs and Depth Pass.</li>
+<li>Combine the Lines with your render by using an Alpha Over node (or color mix of your choice, depending on what you do with them.)</li>
+<li>As Anti-Aliasing is disabled, the node must be used instead. The Lines have their own AA node inside the group, so you need a second for the main render. It doesn't hurt for it to run on the lines again, so put it last.
+<img alt="" src="../media/setup_Compositor_nodes.png" /></li>
+</ul>
+<h4 id="settings-inside-the-node-group">Settings inside the node group:</h4>
+<p>There are several options that cannot be made inputs on the node group without major performance issues due to how the Compositor compiles. These can only be changed by going into the group and changing the connections. (The full addon will handle this automatically).</p>
+<p><strong>Max Width:</strong></p>
+<p>Choose the Max Width in pixels at the end of the node tree. Usually 4-8 is sufficient even for thick lines. But if you have more scaling on some lines than others, or are using World scaling (distance from camera) you may need more in closeups.
+<img alt="" src="../media/setup_Max_width_connection.png" /></p>
+<p>The line detection works by checking all pixels around the current pixel in expanding rings. The performance cost is based on the number of rings checked, which is controlled by the Max Width. Each extra ring costs more and more compute and vram! So if you have a Max Width of 10, but your lines are only set to width 5, then you are still paying the cost to check out to 10! Widths above 10 start getting heavy very quickly, and will consume enormous amounts of vram at high resolutions.</p>
+<p><strong>Connections Group:</strong></p>
+<p>Other connections can be found inside this group, so you can change them from one place without digging through nested node groups.
+<img alt="" src="../media/setup_Connections_group.png" />
+<img alt="" src="../media/setup_connections_options.png" /></p>
+<p>Width Scaling Mode:
+- Pixel = line width is a flat value in pixels
+- Screen = the width is adjusted based on the screen resolution, so width stays consistent even if you change resolution
+- World = the width is scaled by the world pixel size, which is calculated from depth and camera lens horizontal FOV. This means lines stay the same thickness in world space regardless of camera distance or lens size (aka, Distance from Camera scaling). In the viewport, this only works when viewing through the Active Camera</p>
+<p>The scaling values for width are found in the main group:
+<img alt="" src="../media/setup_Width_scale_options.png" /></p>
+<p><strong>Color Mode:</strong></p>
+<ul>
+<li>Colored = Supports different colors and widths per line. Uses depth priority sorting so lines of a closer point take priority. But there can be z-fighting for lines at the same depth or close (due to float precision issues), most notably if meshes with different colors intersect. <em>This can hopefully be improved in a future version.</em></li>
+<li>Mask Only = The lines are only an alpha mask, but can have different thickness. Much more performant due to not needing priority sampling! Always switch to this if your lines are only a single color.</li>
+<li><em>(Upcoming) - Mask only, mono thickness = Vastly better performance but all lines are also the same thickness (standard compositor filters).</em></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
