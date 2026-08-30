@@ -1,9 +1,12 @@
-site_name: aVersionOf_Compositor Line Art Documentation
-
+site_name: aVersion_Lines Documentation
 
 
 theme:
   name: material
+  # Fonts are self-hosted in docs/fonts and wired up in docs/stylesheets/extra.css:
+  # IBM Plex Sans for body, Aldrich for headings. `font: false` stops Material
+  # requesting anything from Google Fonts.
+  font: false
   palette:
     - scheme: slate
       primary: deep purple
@@ -17,13 +20,51 @@ theme:
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
+  features:
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+    - toc.integrate
+
+
+extra_css:
+  - stylesheets/extra.css
+
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.emoji
 
 
 nav:
   - Home: index.md
-  - Setup: setup.md
-  - Technical Notes: technical-notes.md
-  - Line Types: line-types.md
-  - Examples: examples.md
-  - How It Works: how-it-works.md
-  - Parameter Input Guide: parameter-input-guide.md
+  - Getting Started:
+      - Installation: installation.md
+      - Quick Start: quick-start.md
+  - Concepts:
+      - How It Works: how-it-works.md
+      - Line Types: line-types.md
+      - Width & Scaling: width-and-scaling.md
+      - Object & Custom IDs: custom-ids.md
+      - Marked Edges: marked-edges.md
+      - Distance Scaling: distance-scaling.md
+  - Reference — Addon:
+      - The Addon Panel: addon-panel.md
+      - Setup Tools: setup-tools.md
+      - Authoring Tools: authoring-tools.md
+  - Reference — Node Groups:
+      - Line_Art (Compositor): node-line-art.md
+      - Shader_Data: node-shader-data.md
+      - Geo_Data: node-geo-data.md
+      - Distance_Scale: node-distance-scale.md
+  - Advanced:
+      - Temporary Technical Notes: technical-notes.md
+  - Help:
+      - Troubleshooting & FAQ: troubleshooting.md
+      - Known Issues: known-issues.md
+      - Future Plans: future-plans.md
+      - Changelog: changelog.md
