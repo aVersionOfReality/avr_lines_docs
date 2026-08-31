@@ -2,6 +2,8 @@
 
 `AVR_Lines: Line_Art` is the **compositor** group at the end of the pipeline. It takes the rendered AOV passes plus the Depth pass, detects and expands the lines, and outputs the final line image. Most of its inputs mirror the addon panel's Thresholds and Width Scales, and editing them in either place writes to the same sockets.
 
+![The Line_Art node group in the compositor](images/ref_nodes_Line_Art-1.png){ width="926" }
+
 ## Outputs
 
 - **Lines:** Final composited line art output. This is the one you use.

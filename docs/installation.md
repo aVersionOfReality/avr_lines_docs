@@ -7,13 +7,6 @@ The tool is a Blender **extension**, installed from disk.
 !!! note "Blender version"
     Requires **Blender 5.2 or newer**.
 
-## Where to buy:
-
-- **[Gumroad](https://aversionofreality.gumroad.com/l/avr_lines)**
-- **Superhive**: coming soon
-
-
-
 ## Install the extension
 
 1. Download the extension `.zip`.

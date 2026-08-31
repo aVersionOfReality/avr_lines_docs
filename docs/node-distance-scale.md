@@ -7,6 +7,11 @@
 
 Add either with the [Add Distance Scale Group](authoring-tools.md) tool. For the concept, see [Distance Scaling](distance-scaling.md).
 
+![The Distance_Scale_Mat group in a material](images/ref_nodes_Distance_Scale_Mat-1.png){ width="468" }
+
+!!! tip "Reshaping the output"
+    The `Scale` output doesn't have to go straight into a Width Scale. Running it through a Power node or a Float Curve on the way lets each line type fall off on its own curve from a single group. See [Examples](distance-scaling.md#different-falloff-per-line-type).
+
 ## Top-level
 
 - **Scale** *(output)*: Adjusted Scale. Plug into one of the Width Scales on the Shader_Data or Geo_Data node.
@@ -40,9 +45,11 @@ Add either with the [Add Distance Scale Group](authoring-tools.md) tool. For the
 !!! note "Camera modes are geometry-nodes only, Z Depth is material only"
     Geometry nodes read the Active Camera's position natively (Object Info + Active Camera). A shader can only get it from Python writes or a driver, and both discard the compiled material whenever the camera moves, so surfaces flash grey while moving.
 
-    *Z Depth* goes the other way: it reads Camera Data directly in the shader and needs no camera position, so it is the material flavour that has it. It is also the better measurement. See [Z Depth vs. distance to the camera](distance-scaling.md#z-depth-vs-distance-to-the-camera).
+```
+*Z Depth* goes the other way: it reads Camera Data directly in the shader and needs no camera position, so it is the material flavour that has it. It is also the better measurement. See [Z Depth vs. distance to the camera](distance-scaling.md#z-depth-vs-distance-to-the-camera).
 
-    Geometry nodes could compute the same value (invert the camera transform, transform the position into camera space, negate Z), but that isn't wired into `Distance_Scale_GN` yet.
+Geometry nodes could compute the same value (invert the camera transform, transform the position into camera space, negate Z), but that isn't wired into `Distance_Scale_GN` yet.
+```
 
 
 

@@ -5,6 +5,9 @@
     the essentials, but images, diagrams, and clips are still being made, and some
     sections will be expanded. More is being added over the coming weeks.
 
+!!! note "Everything here is about Blender"
+    Comparisons and limitations on this page are specific to Blender, the tools that ship with it, and what can reasonably be built inside it. Other software solves some of these problems differently.
+
 The core idea is simple, and understanding it makes the rest of the tool much clearer.
 
 ![Line Expansion](images/info1_expansion-1.png){ width="860" }
@@ -23,8 +26,7 @@ Most line art tools work the other way around. They analyse the mesh, build actu
 
 - **It can draw lines on anything.** Geometry based tools only see geometry, so they can't put a line on the edge of a toon shading band, or a painted mask, or a texture. If you can compute it in a shader, this can draw a line on it.
 - **Scene complexity doesn't matter.** Cost is flat per pixel, so a million polygon character costs the same as a cube. Geometry based lines get slower as meshes get denser, and denser meshes are usually exactly when you want them. What costs you here is resolution and line thickness instead, which are things you control directly.
-- **It's fast enough to work with.** Geometry Lines are calculated on CPU and so are slow (except inverted hull) and their cost scales with mesh complexity. Freestyle and Grease Pencil's Line Art both have to rebuild their strokes when things change, which puts them somewhere between slow and not viable for previewing as you work. This updates in the viewport, so you can tune thresholds and widths and see the result immediately.
-- **Thick lines hold up better.** Geometry strokes can be extruded to any width, but past a certain thickness they start showing their construction: end caps poke out, strokes clip through each other at corners, and overlaps stop reading as one line. Expanding from pixels sidesteps all of that, so thick lines stay clean.
+- **It's fast enough to work with.** Geometry Lines are calculated on CPU and so are slow and their cost scales with mesh complexity. Freestyle and Grease Pencil's Line Art both have to rebuild their strokes when things change, which puts them somewhere between slow and not viable for previewing as you work. Inverted Hull is fast but has limieted options and artifacts. This updates in the viewport, so you can tune thresholds and widths and see the result immediately.
 - **Thickness can vary per pixel**, driven by any data you like, from any stage of the pipeline.
 
 **What it gives up:**
@@ -50,7 +52,7 @@ Data flows through three node groups, in this order:
 
 ## Why anti-aliasing has to be off
 
-Comparing neighboring pixels breaks down on anti-aliased data. AA blurs edges across several pixels, so a single edge gets detected multiple times. That means extra thickness, and worse, broken threshold detection (especially on normals). So the setup **disables Blender's film anti-aliasing** and re-adds it afterward with the compositor's AA node.
+Comparing neighboring pixels breaks down on anti-aliased data, and the solutions to this can't currently be built properly in Blender. AA blurs edges across several pixels, so a single edge gets detected multiple times. That means extra thickness, and worse, broken threshold detection (especially on normals). So the setup **disables Blender's film anti-aliasing** and re-adds it afterward with the compositor's AA node.
 
 The compositor's AA is not as good as native AA, and it can also blur the outermost pixels of the image, since its samples run off the edge of frame and get clamped back onto the border pixel. This is the tool's biggest quality trade-off, and [Technical Notes](technical-notes.md) covers the workarounds.
 

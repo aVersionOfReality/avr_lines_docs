@@ -5,6 +5,8 @@
 !!! tip
     Place this modifier **after** any mesh-altering modifiers so it reads the final geometry.
 
+![The Geo_Data node group as a modifier](images/ref_nodes_Geo_Data-1.png){ width="660" }
+
 ## Geo_Data Node Group Parameters
 
 - **Line Color:** Line color, used in Varying Color mode.

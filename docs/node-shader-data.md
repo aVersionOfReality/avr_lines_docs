@@ -4,6 +4,8 @@
 
 You may not need everything in the group present in any given material. You can copy or ungroup Shader_Data and remove parts that material isn't using if needed. Since the group includes many attributes and eevee has a cap of 15, this will become necessary if your material already uses many. For example, if a material is not using any marked edges or ID passes, you could remove those frames from a copy of the group and save several attributes.
 
+![The Shader_Data node group in a material](images/ref_nodes_Shader_Data-1.png){ width="516" }
+
 ## Shader_Data Node Group Parameters
 
 - **Mask Line Expansion:** Masks expanded lines. Use to keep lines from covering an area. This can also be done by mixing the output of the Compositor group in some way, but this is wired up for convenience as you'll often want to mask with material data. For example, if you have a high detail area like a character's eyes that you never want to be covered up. Or if you have other sources of line art, such as textures, and don't want new lines covering it.

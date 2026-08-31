@@ -9,13 +9,29 @@ Distance scaling varies line width by distance. Thinner lines as things recede, 
 
 ## How to use it
 
-*Examples are being worked on, and this is one of the main areas they are needed, so its a high priority.*
-
 Here's the basic idea: the Distance Scaling group is a fancy version of the Map Range node. You define the range the change happens over, and the shape of the change. Linear falloff means something twice as far away is half the scale. But often that isn't what we want artistically, hence the various curve and exponent options (which create a curve mathematically.)
 
 You can also use further curves on the output of the group to alter the falloff curve for different inputs. For example, you might set the group to have an exponent of 1 (linear falloff) and plug that into Object Scale. But then run the output of the group through Power nodes or Float curves before plugging into Custom IDs. This would cause the Custom ID lines to falloff differently, which is how you let interior details disappear sooner at range than silhouette lines.
 
 You can also chain the Distance Scaling group to alter the scale both from the camera and from another source. This is useful for effects, such as an explosion that doesn't literally cast light, but should thin lines closer to it.
+
+## Examples
+
+
+
+### Different falloff per line type
+
+Both of these use one Distance_Scale group and reshape its output on the way to the Width Scales, so each line type falls off on its own curve. The group itself stays simple, and the variation happens outside it.
+
+![Distance Scale output reshaped by two Power nodes at different exponents](images/ex_Distance_Scale_falloff-1.png){ width="860" }
+
+Its raw output goes straight to **Scale All**, so everything gets the plain linear falloff as a baseline. From there it's split: one **Power** node at exponent 1.571 (half pi is a good curve) feeds Normal, Depth and Object, and a second at exponent 2.0 feeds the three Custom IDs and Marked Edges. Higher exponents fall off faster, so the interior detail lines thin out and disappear well before the silhouette does.
+
+![The same setup using a Float Curve instead of a second Power node](images/ex_Distance_Scale_falloff-2.png){ width="860" }
+
+Same idea with a hand drawn curve. The group is doing an exponent of 1.571 this time, a **Power** node at 1.1 handles Custom ID 1 and 2, and a **Float Curve** shapes the falloff for Custom ID 3. The curve gives you direct control over the shape rather than describing it with a number, which is easier when you are matching a look by eye. The Power and Float Curve are operating on top of the original Falloff of 1.571. So both are defining a bit more falloff on top of what's already there.
+
+Note that Marked Edges is on 1.0 in the second shot, so those lines hold their width at any distance while everything else thins out.
 
 ## Adding a Distance Scale group
 

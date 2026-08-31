@@ -65,11 +65,9 @@ Expansion works out which line is in front by comparing depth. Where two surface
 !!! note "Full compositor precision"
     The setup switches the **viewport** to Full precision. This is a different thing from the AOV storage below, it governs the compositor's own intermediate buffers.
 
-```
-It only changes the viewport. On Auto, Blender already composites final renders at full precision and only drops to half for interactive work, so really this setting is about making the viewport match what you'll get out of a render. It does nothing for actual intersections, which are ambiguous at any precision.
+    It only changes the viewport. On Auto, Blender already composites final renders at full precision and only drops to half for interactive work, so really this setting is about making the viewport match what you'll get out of a render. It does nothing for actual intersections, which are ambiguous at any precision.
 
-Either way you notice this most in **Varying Color** mode, where the competing lines are different colors. In Uniform Color they both resolve to the same color, so the same ambiguity has nothing to show.
-```
+    Either way you notice this most in **Varying Color** mode, where the competing lines are different colors. In Uniform Color they both resolve to the same color, so the same ambiguity has nothing to show.
 
 
 

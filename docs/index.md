@@ -2,11 +2,6 @@
 
 **Screen-Space Extraction (SSE) Jump Flood line art for Blender's Compositor.**
 
-## Where to get it
-
-- **[Gumroad](https://aversionofreality.gumroad.com/l/avr_lines)**
-- **Superhive**: coming soon
-
 ## Get Started
 
 - **[Installation](installation.md)**
@@ -22,6 +17,8 @@ This tool creates line art directly from rendered images in Blender's Compositor
 Most line art options work by analyzing the mesh to construct geometry strokes and then render them. They are strong when it comes to geometry features, but blind to everything else. They can't be used to draw lines on data from the shader such as the edges of toon shading or an arbitrary texture mapped onto the model (unless they are very fancy and combine elements of both approaches, like PSOFT Pencil+). But Screen Space Line Art can draw lines on any data sent to the Compositor as long as it is formatted correctly. And this addon allows line thickness to be scaled per pixel, and with data from any step in the pipeline, giving enormous artistic flexibility.
 
 This is an advanced version of filter-based line art that is common in programs like Photoshop and can already be done in basic form with Blender's Filter nodes. It has access to much more data via passes and AOVs, and uses its own sampling instead of existing filter nodes. This allows for proper Depth and Priority comparisons and seed tracking when expanding lines. This means you can have varied line thickness and color, and closer lines properly take priority over further ones rather than the thickest line always winning. Typical filter nodes are fine for slapping basic thin lines over the whole image, but this system allows proper authoring control without losing 3D interactions like occlusion. This is the difference between a rigid uniform effect and actually having artistic and stylistic control. This all comes at a considerable performance cost compared to simple filters, but still runs at interactive speeds on most hardware, even in the viewport.
+
+This is the same general form of lines as the new Raycast Shader node in Eevee, but currently more granular, accessible, and flexible. As the Raycast node gets more options it will be integrated into the addon's line detection system. And the pipeline and authoring tools could be adapted to a Raycast node workflow right now if you wanted.
 
 The tool consists of several node groups that feed data into each other: Geometry Nodes, Material Nodes, and then the main Compositor group. And a Python addon that helps setup everything, manage settings, and author custom data.
 
@@ -92,3 +89,4 @@ Read these before buying:
 
 - **Questions and bug reports:** [aversionofreality@gmail.com](mailto:aversionofreality@gmail.com)
 - **Discord:** see the README included in the download.
+
