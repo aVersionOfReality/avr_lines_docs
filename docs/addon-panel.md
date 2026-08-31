@@ -2,9 +2,13 @@
 
 The panel title has a small **?** button on the right that opens this documentation.
 
+![The aVersion_Lines panel](images/addon_panel_all-1.png){ width="520" }
+
 ## Warnings
 
 A collapsible section that lists anything wrong with the current setup, with a count in its header so you can see at a glance whether anything needs attention. Most clear automatically as you run the Setup Tools. Each entry below shows the message and what to do about it. The node-group checks are rename/duplicate tolerant, so a renamed or copied group still counts as present. 
+
+![The Warnings section](images/addon_panel_warnings-1.png){ width="488" }
 
 - **Compositor node group not found:** The `AVR_Lines: Line_Art` group isn't in the file. Run **Append Node Groups**, then **Add Compositor Nodes**.
 - **Shader node group not found:** The `AVR_Lines: Shader_Data` group isn't in the file. Run **Append Node Groups**, then **Add AOV Group to Materials**.
@@ -48,6 +52,8 @@ Controls for the Compositor Node Group. The Thresholds and Width Scales are the 
 Thresholds, Width Scales, and Advanced Line Set Options are all collapsible sub-panels. Click a header to fold it away. Thresholds and Advanced Line Set Options start collapsed.
 
 ### Detection, Scale, and Expansion Options *(popover)*
+
+![The Detection, Scale, and Expansion Options popover](images/addon_panel_node_group_options-1.png){ width="473" }
 
 **Viewport Camera:**
 
@@ -126,6 +132,8 @@ Everything the line system measures (FOV, focal length, adaptive-width scaling, 
     A parameter row appears disabled when the compositor has a live link feeding that input, so the node connection is overriding the panel value.
 
 ### Advanced Line Set Options
+
+![The Advanced Line Set Options sub-panel](images/addon_panel_advanced_options-1.png){ width="482" }
 
 For when and why to use these, see [Advanced Line Set Options](custom-ids.md#advanced-line-set-options) in the Object & Custom IDs page.
 

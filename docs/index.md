@@ -2,6 +2,11 @@
 
 **Screen-Space Extraction (SSE) Jump Flood line art for Blender's Compositor.**
 
+## Where to get it
+
+- **Gumroad**: coming soon
+- **Superhive**: coming soon
+
 ## Get Started
 
 - **[Installation](installation.md)**
