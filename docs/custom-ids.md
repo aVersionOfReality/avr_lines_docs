@@ -75,7 +75,34 @@ Each channel of a line set (its own ID edge, Depth, and Normal) has a **role**:
 
 **Include** widens what the set catches; **Mask** narrows it. Setting several channels to Mask narrows it further, since the line then only survives where all of them detect. Mask is the one to reach for when an ID boundary catches too much and you want to keep only the part that is also a real depth or normal feature.
 
-Each line set carries its own Depth and Normal thresholds, independent of the global ones, and they follow **Threshold Scaling Mode** in the same way.
+Each line set can carry its own Depth and Normal thresholds instead of the global ones (see below). Either way they follow **Threshold Scaling Mode** in the same way.
+
+#### Which threshold it uses
+
+Each of those Depth and Normal channels has a dropdown next to its role, for where it gets its threshold:
+
+- **Varying Threshold** (default): use the main Depth or Normal line set's threshold, including its Threshold Range and, for Depth, Grazing Correction. Because that value comes from Geometry Nodes and the material, it can vary across the mesh. You can paint it, drive it, or vary it per material, and this line set follows all of that.
+- **Uniform Threshold**: use the single value set here instead. One number for the whole mesh. It can't be painted or driven without going into the nodes yourself.
+
+Varying is usually what you want, since it inherits all the per-mesh control you have already set up on the main passes. Uniform is there for when you want a line set to detect at a different sensitivity than the main pass everywhere, with no per-mesh variation.
+
+The Uniform value greys out when Varying is selected, because nothing reads it then.
+
+Watch out for one thing: if you set a channel to Varying and the matching Depth or Normal line set is also switched on, you are detecting the same thing twice with the same threshold, so the two will mostly overlap. Scale that line set to 0 if you only want it inside your ID sets.
+
+### Depth and Normal as line sets
+
+Depth and Normal appear in Include in Include in Line Set. They get the same combine stage the IDs have, which lets you go the other way: instead of folding Depth into an ID, you can mask Depth *by* an ID.
+
+They differ from the ID sets in two ways:
+
+First, there's a dropdown for **which ID** they combine with. An ID line set has its own ID and doesn't need to pick one; Depth and Normal have no ID of their own, so you choose. The ID is taken before that line set's own combine stage, so whatever roles you've set on Custom ID 1 don't affect what Depth sees when it masks by Custom ID 1.
+
+Second, only the *other* channel has a threshold. The Depth line set's own threshold is the main Depth Threshold up in the Thresholds panel. So the Depth set shows a Normal threshold, and the Normal set shows a Depth threshold. You can still chooes a Uniform Threshold for the other channel.
+
+The obvious use is masking. Depth lines everywhere are usually too many; Depth masked by an ID gives you depth detection only in the region you designated. That's the same trick as masking an ID by Depth, but as part of the Depth Line Set instead, allowing more options.
+
+Both default to Off for everything except their own channel, so they behave exactly as before until you change something.
 
 A common example where this system is useful is the chin of a character. If you mark the face and neck as separate IDs, it will work fine from front angles where the boundary isn't visible. But from lower angles, you'll see the boundary marked with the line instead. If you use only the Depth or Normal lines, they can be unreliable from different angles unless you paint detailed Threshold groups for them, and you may even need different thresholds for different camera directions to look correct. But if you have that ID and mask it by Depth (or vice versa), you'll only get lines when both are true. You can use a much lower depth threshold to ensure you pick up the difference between the chin and neck without overdetecting.
 

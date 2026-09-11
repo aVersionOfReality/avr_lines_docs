@@ -11,7 +11,7 @@ Marked edges are a special form of [Custom IDs](custom-ids.md). ID lines are dra
 
 You mark the edges you want as lines (Freestyle by default), and mark **completion edges** (Bevel by default) to close those chains into complete boundaries. Running **Set Marked Edge Boundaries** then reads both and bakes a region map onto the mesh: each face gets a region ID plus a small set of *tags (think overlapping mask groups)*. A line is drawn where two regions meet **and** share a tag, which is true along the edges you marked and false along the completion edges that merely closed the shape.
 
-You don't have to mark the completion edges manually. The script defaults to auto-detecting them by walking the mesh edges. But it can make mistakes, especially on complex or unusual topology. If lines are not behaving correctly, try marking the completion edges manually.
+You don't have to mark the completion edges manually. The script defaults to auto-detecting them by walking the mesh edges. But it can make mistakes, especially on complex or unusual topology. The tool does its best, but it can't yet handle certain low poly situations. t only traces from the ends of floating marked edge segments currently, so it will fail in certain situations, such as needing a cut at the back of a cylinder. For now these will need to be added manually. Check the console after running Set Marked Edge Boundaries. It reports if there are failed areas that won't draw.
 
 See [Authoring-Tools](authoring-tools.md) for the script's options.
 

@@ -38,6 +38,8 @@ Per-object multipliers. These multiply with the Shader and Compositor scales. Th
 !!! tip "Attribute-driven widths"
     Any Width Scale here can take a **Face or Face Corner attribute** instead of a value, so you can paint detailed thickness masks, or generate them in an earlier modifier. If a vertex group is used (Point domain), it will be interpolated to Face Corner domain.
 
+    If you're using one of these to taper a line end, see [Taper falloff](node-shader-data.md#taper-falloff-power-nodes) in Shader_Data. Tapering with a vertex group is linear across whatever face the values change over, and there are Power nodes in the shader group for reshaping that.
+
 ---
 
 **Related:** [Shader_Data](node-shader-data.md) · [Object & Custom IDs](custom-ids.md) · [Marked Edges](marked-edges.md) · [Width & Scaling](width-and-scaling.md)

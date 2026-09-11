@@ -89,5 +89,6 @@ For each object you want lines on:
 - Combine the **Lines** output with your render (usually an **Alpha Over** node).
 - Because film AA is off, add an **Anti-Aliasing** node for the main render. The lines have their own AA inside the group; a second AA pass over everything last doesn't hurt.
 - Note that the Anti-Aliasing node can blur the outermost pixels of the image. If you need a clean border, render slightly larger and crop. See [Known Issues](known-issues.md).
+- If you are supersampling (rendering large to scale down), put a **Scale** node last, after everything else. Type *Relative*, X and Y at the fraction you want, Sampling set to *Anisotropic*. See [Width & Scaling](width-and-scaling.md#downscaling-a-supersampled-render).
 
 See also: [How It Works](how-it-works.md) · [Setup Tools](setup-tools.md) · [Technical Notes](technical-notes.md)

@@ -25,6 +25,7 @@ This is the tool's main friction with normal workflows, though more options are 
 - Anti-Aliasing can **blur the outermost pixels of the image**. It samples a small neighborhood around each pixel, and at the border those samples fall off the edge of frame and get clamped back onto the border pixel, so that outer edge ends up blended from duplicated values. Render a little larger and crop if you need a clean border, or just keep anything important away from the very edge.
 - The AA node works best on high contrast data, but some line thicknesses will have feathering on diagonals. The setup actually uses multiple AA nodes with settings optimized for both situations and the two are *almost* indistinguishable, but you may still notice that Odd thickness lines look slightly better, and tapering lines can show very small issues in some situations. These issues are mostly at lower resolutions.
 - Lines **thinner than 1px** won't AA well by any method and can't reach full alpha, since you can't partially fill a pixel. **Minimum Width** (1 or 2) helps, and **Width Cutoff** throws the thinnest values away rather than letting them render as grey.
+- **Supersampling is the best workaround for all of this.** Render larger than you need and scale down at the end of the compositor with a Scale node. Detection runs at the bigger resolution so it resolves finer detail, and the downscale gives you real anti-aliasing instead of the AA node's approximation. It costs render time, but it sidesteps most of the quality loss above. See [Width & Scaling](width-and-scaling.md#downscaling-a-supersampled-render).
 
 !!! note "Potential fixes are coming"
     A proposal to run the compositor **before** AA instead of after (which is what Malt does) would resolve most of this. The Raycast node may also allow detection before AA. Both are being watched for future versions, with no timeline.
@@ -40,7 +41,11 @@ The compositor then subtracts that extra pixel from the width before expanding, 
 - **Where both sides are marked, the thinnest line is 2 pixels.** Ask for 1 and you get 2, because a 2 pixel mark can't render thinner than itself. Widths of 2 and above are exact. Where depth does resolve which side is in front the mark is 1 pixel, and any width is exact.
 - **Setting a width to 0 still turns the line off.** The correction is skipped where there's no line to correct, so masking by driving a width to 0 works the way you'd expect.
 
-The test is a tolerance rather than exact equality. The two sides count as ambiguous when their depth difference falls under a small epsilon, so it covers flat surfaces, coplanar regions, and anything close enough to coplanar. Where one side is genuinely nearer, depth picks it and the mark is 1 pixel. The width correction only applies in the ambiguous case. Marked Edge lines are always on one surface, so they always get corrected.
+The test is a tolerance rather than exact equality. The two sides count as ambiguous when their depth difference falls under a small fraction of the distance to the camera, so it covers flat surfaces, coplanar regions, and anything close enough to coplanar. Where one side is genuinely nearer, depth picks it and the mark is 1 pixel. The width correction only applies in the ambiguous case.
+
+The tolerance is a **ratio rather than a fixed distance**, so it scales with how far away the surface is. That keeps it consistent whatever scale you model at, and it tracks depth precision as well, since the depth buffer also gets coarser with distance. A fixed value would be too tight far from the camera and too loose up close.
+
+This applies to Marked Edge lines the same as any other. A marked chain drawn across a single flat surface is coplanar along its whole length, so in practice it is usually corrected — but where a marked edge runs along a silhouette, with something nearer in front of it, depth resolves the order and the near surface wins.
 
 ## Transparency and the AOVs
 

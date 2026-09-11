@@ -15,8 +15,11 @@ You can also use further curves on the output of the group to alter the falloff 
 
 You can also chain the Distance Scaling group to alter the scale both from the camera and from another source. This is useful for effects, such as an explosion that doesn't literally cast light, but should thin lines closer to it.
 
-## Examples
+!!! note "You can use Map Range in the Compositor too"
+    You can also control the distance scaling in the Compositor with Depth and Map range. I didn't include a Ditance Scaling group in the compositor as it would lack options other than Z depth, so there would be no functional difference from just using Map Range.
 
+
+## Examples
 
 
 ### Different falloff per line type
@@ -51,7 +54,8 @@ The `Scale` output plugs into a Width Scale, and from there distance drives that
 - **Distance Source:** how distance is measured. See the table below.
 - **Falloff Shape:** the curve between the two ends. Exponent, Closure, Smoothstep, Smootherstep, or Stepped. Closure lets you feed in your own curve, so a Float Curve or Color Ramp works well there.
 
-
+!!! note "You can alter the falloff after the node group too"
+    Putting an exponent of 1 and then a Power node or Curve on the output of the Distance Scale group works too. The reason there is an input is to allow it to be controlled from a node group input (or with an inputted Closure), allowing more flexibility if grouping your nodes.
 
 ### Distance Source
 

@@ -22,6 +22,7 @@ Start here if something looks wrong. The **Warnings** section of the add-on pane
 ### Lines are doubled, blurry, or too thick
 
 - **Anti-aliasing is probably still on.** Set Render → Film → **Filter Size = 0**. AA makes single edges detect multiple times. See [Technical Notes](technical-notes.md).
+- **Lines look soft or the AA isn't good enough?** Supersample. Render larger and scale down at the end of the compositor. See [Downscaling a supersampled render](width-and-scaling.md#downscaling-a-supersampled-render).
 - **Is it only along the edge of frame?** The compositor's Anti-Aliasing node blurs the outermost pixels, since its samples clamp back onto the border pixel. Render a little larger and crop. See [Known Issues](known-issues.md).
 - **A 1 px line renders 2 px.** That's the floor, not a bug. See [Line thickness and the 2 pixel floor](technical-notes.md#line-thickness-and-the-2-pixel-floor-for-coplanar-lines).
 

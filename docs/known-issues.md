@@ -16,7 +16,7 @@ For *setup* problems (no lines at all, doubled lines, and so on) see [Troublesho
 
 - **Blender 5.2 or newer is required:** The addon uses compositor and geometry nodes that don't exist earlier.
 - **EEVEE only binds 15 attributes per material, and silently drops the rest:** No error, nothing in the console. The dropped attribute just reads blank or wrong, which usually turns up as one line set failing on one material while working fine everywhere else. `Shader_Data` uses 6 slots, leaving you roughly 8 for your own texturing. Plenty for most materials, tight for heavily layered ones. The addon warns you at 13. See [Material attribute limit](troubleshooting.md#material-attribute-limit) for ways to get slots back.
-- **Anti-aliasing has to be off:** Detection compares neighboring pixels, and AA blurs values across pixel boundaries, so a single edge detects as several. Film Filter Size must be 0. The compositor re-anti-aliases afterwards using the AA node, but it isn't as good as native AA. For toon styles this generally doesn't matter for you full image. But if it does, render lines separately. See [Technical Notes](technical-notes.md).
+- **Anti-aliasing has to be off:** Detection compares neighboring pixels, and AA blurs values across pixel boundaries, so a single edge detects as several. Film Filter Size must be 0. The compositor re-anti-aliases afterwards using the AA node, but it isn't as good as native AA. For toon styles this generally doesn't matter for you full image. But if it does, supersample (render large and scale down at the end of the compositor), or render lines separately. See [Technical Notes](technical-notes.md) and [Downscaling a supersampled render](width-and-scaling.md#downscaling-a-supersampled-render).
 - **Only one** `Shader_Data` **group per material:** Two in the same material fight over the same AOVs.
 - `Geo_Data` **must come after any mesh-altering modifiers** so it reads the final geometry.
 
@@ -74,6 +74,7 @@ If you want lines on a character standing behind coloured glass, use **Blended**
 - **Marked edge data is saved, not live:** **Set Marked Edge Boundaries** writes a region map onto the mesh, so it goes stale as soon as you change which edges are marked. Run it again after editing your marks.
 - **A marked chain that doesn't close can't be told apart from its completion edges:** So those lines can't be drawn correctly. The tool lists unresolved boundaries in the console rather than guessing. Extend the chain to a mesh boundary or to another marked chain. See [Marked Edges](marked-edges.md#splitting-mixed-boundaries).
 - **Each region only carries three line group tags:** Dense marking can go over that, and the lines that don't fit are silently dropped. The console reports *slots per region* on each run.
+- **Trace Completions will fail in some situations:** The option does its best, but it can't yet handle certain low poly situations or edge flows. It only traces from the ends of floating marked edge segments currently, so it will fail in certain situations, such as needing a cut at the back of a cylinder. For now these will need to be added manually.
 
 
 

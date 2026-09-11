@@ -47,6 +47,14 @@ So with Max Width at `18` and your thickest line at `5`, you are paying to evalu
 
 The high presets (`~38`, `~78`) are there for genuinely thick lines, or distance scaling that pushes width up in close-ups, or supersampled renders you intend to scale down. On a normal shot `~8` to `~18` is plenty.
 
+### Downscaling a supersampled render
+
+If you are rendering large to scale down, do it with a **Scale** node at the very end of the compositor, after the lines have been composited. Set **Type** to *Relative* and both **X** and **Y** to the fraction you want, so `0.5` halves the resolution. Set **Sampling** to *Anisotropic*, which gives the cleanest result on lines.
+
+![A Scale node set to Relative 0.5 with Anisotropic sampling, before the Group Output](images/ref_nodes_scale_downsample-1.png){ width="551" }
+
+Scaling down after detection is why supersampling helps in the first place. Detection runs at the large resolution, so it resolves detail a smaller render would miss, and the downscale then anti-aliases the result properly.
+
 !!! note
     If you are working with very thick lines at super resolutions (such as rendering at 8k so you can downsample to 4k), then 78px thick may not be enough. That limit is only there because each Jump Flood Pass is another copy of the nodes. Adding another pass would be a nightmare by hand, but I've got it on my todo list to add the option to add more as the complex groups are built with python anyway. If you manage to hit the limit before I get around to this, shoot me a message and I'll prioritize it.
 

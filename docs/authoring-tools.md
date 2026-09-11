@@ -43,18 +43,19 @@ Assigns a fresh ID (distinct from the rest of the object) to your selected faces
 
 ## Set Marked Edge Boundaries
 
-Saves the region data that [Marked Edge lines](marked-edges.md) read. Run it on a mesh after marking edges, and again whenever you change which edges are marked. The data is stored as a mesh, not recalculated live.
+Saves the region data that [Marked Edge lines](marked-edges.md) read. Run it on a mesh after marking edges, and again whenever you change which edges are marked. The data is stored as a mesh, not recalculated live. The operator runs on all selected Objects in Object mode, or the selection if run in Edit mode.
 
 Marked Edges are a special form of [Custom IDs](custom-ids.md). ID group edges are drawn between regions of different flat values. That means they cannot handle floating marked edges, since it has to be a fully enclosed region. So to get a floating edge, we fake it by extending it to a boundary to form a full region, and then masking out those completion edges.
 
 The script reads two edge attributes: the edges you want **drawn as lines** (Freestyle by default), and the **completion edges** that close those chains into boundaries (Bevel by default). Completion edges never draw lines themselves; they exist so the marked chain encloses a region. From those it works out the face regions on either side of every boundary and writes, per face, a region ID plus a small set of *tags*. A line is drawn where two regions meet **and** share a tag: true along your marked edges, false along the completion edges.
 
-For best results, mark the completion edges yourself: mark from the end of the Freestyle line to a mesh boundary or another freestyle line. If you don't, the script will attempt to auto-detect and mark these completion edges. But it may get it wrong or even fail on complex or messy topology!
+For best results, mark the completion edges yourself: mark from the end of the Freestyle line to a mesh boundary or another freestyle line. If you don't, the script will attempt to auto-detect and mark these completion edges. But it may get it wrong or even fail on complex or messy topology! The tool does its best, but it can't yet handle certain low poly situations. t only traces from the ends of floating marked edge segments currently, so it will fail in certain situations, such as needing a cut at the back of a cylinder. For now these will need to be added manually. Check the console after running Set Marked Edge Boundaries. It reports if there are failed areas that won't draw.
 
 **Notable options:**
 
 - **Marked Edges / Completion Edges:** which edge attributes to read. Accepts the built-in marks (`freestyle_edge`, `bevel_weight_edge`, `sharp_edge`) or any named edge attribute.
 - **Trace Completions:** route completion edges automatically when the completion attribute selects none.
+- **Mark Traced Completions:** marks the traced completion in the Completions attribute.
 - **Write To:** the Face Corner color attribute the data is written to. Replaced each run.
 
 !!! warning "Chains have to close"

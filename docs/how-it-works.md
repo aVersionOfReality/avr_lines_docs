@@ -54,7 +54,9 @@ Data flows through three node groups, in this order:
 
 Comparing neighboring pixels breaks down on anti-aliased data, and the solutions to this can't currently be built properly in Blender. AA blurs edges across several pixels, so a single edge gets detected multiple times. That means extra thickness, and worse, broken threshold detection (especially on normals). So the setup **disables Blender's film anti-aliasing** and re-adds it afterward with the compositor's AA node.
 
-The compositor's AA is not as good as native AA, and it can also blur the outermost pixels of the image, since its samples run off the edge of frame and get clamped back onto the border pixel. This is the tool's biggest quality trade-off, and [Technical Notes](technical-notes.md) covers the workarounds.
+The compositor's AA is not as good as native AA, and it can also blur the outermost pixels of the image, since its samples run off the edge of frame and get clamped back onto the border pixel. This is the tool's biggest quality trade-off.
+
+The usual answer is to supersample: render larger than you need and scale down at the end of the compositor, which gives you proper anti-aliasing from the downscale. See [Downscaling a supersampled render](width-and-scaling.md#downscaling-a-supersampled-render), and [Technical Notes](technical-notes.md) for the rest of the workarounds.
 
 ## Why the Depth pass has to be on
 

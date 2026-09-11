@@ -34,6 +34,23 @@ Per-material overrides of the data coming from Geometry Nodes. Each pair is a **
 !!! note "Order of operations"
     The ID mixes happen **before** the matching **Combine with** inputs in the [ID Groups](#id-groups) panel. So `Mix OBJ ID` replaces or blends the value coming from Geometry Nodes, and *then* `Combine with OBJ ID` hashes another source into that result.
 
+### Taper falloff (Power nodes)
+
+There are three Power nodes in the group, on the Width Scale after the attribute is multiplied by the matching input. They're all set to 1 by default, which does nothing.
+
+What they do: if you taper a line end with a vertex group, the fade happens across whatever face the values change over. So the length of the taper is set by your topology rather than by you, and it's linear, which usually looks bad. Running the mask through a Power changes the shape of that falloff. Values **below** 1 keep the line near full width and then drop off quickly, which gives a better tip shape. I get good results from 0.5 and 0.333. Above 1 does the opposite and mostly just looks thin and dragged out.
+
+They only affect the per-line-set scales (Normal, Depth, Object, Custom ID 1–3, Marked Edges). Mask All and Scale All aren't touched, because those already come in as inputs and you can put your own Power on them outside the group.
+
+!!! warning "This changes flat masks too, not just tapers"
+    A Power applies to the whole scale value, and it can't tell a taper from a mask you're using for general thickness control. If you paint an area at a flat 0.5 to make lines thinner there, an exponent of 0.5 turns that into 0.707 and the area gets thicker. So if you use flat vertex groups that way, leave these at 1 and put a Power node on the gradient in your own material instead, where you can apply it only to the thing you meant to taper.
+
+```
+Separating tapering from thickness properly is planned, but it needs the scale inputs reworked. So these aren't exposed in the addon panel yet, but are there if you need them (but will get their values overwritten if you update the node group. Expose them as inputs if you're using them.)
+```
+
+
+
 ### ID Groups
 
 Hash another ID source into this material's line set. See [combining IDs](custom-ids.md#combining-ids).

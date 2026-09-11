@@ -140,10 +140,16 @@ For when and why to use these, see [Advanced Line Set Options](custom-ids.md#adv
 A collapsible sub-panel, closed by default. Because it is docked rather than a popover, the fields behave like any other panel value: **Backspace** resets one to its default, and you can click straight from it to anything else without dismissing it first.
 
 - **Line Set Priority:** Per-line-type draw priority. If a pixel is detected by multiple line sets, the default is for the thickest to take priority. Set a higher priority for a line set to have it win even if it is thinner. This can be used to allow thinner detail lines to not be covered up by thicker contour lines.
-- **Include in Line Set:** Fold Depth and/or Normal detection into each line set (Custom ID 1-3 and Object ID). Completely separate from the actual Depth/Normal line sets, so areas that can't be marked on the mesh with a boundary still get lines with thickness matching the rest of that line set. Use to fill gaps or detect overlaps. Each line set has its own Depth and Normal thresholds, which follow Threshold Scaling Mode exactly like the main thresholds do.
+- **Include in Line Set:** Include Depth and/or Normal detection into each line set (Custom ID 1-3 and Object ID), and Include IDs into the Depth and Normal sets. Completely separate from how the Depth/Normal line sets detect on their own, so areas that can't be marked on the mesh with a boundary still get lines with thickness matching the rest of that line set. Use to fill gaps or detect overlaps. See [Including Depth and Normals in an ID line set](custom-ids.md#including-depth-and-normals-in-an-id-line-set).
 
 !!! note "Inclusion Options"
     Each channel (the line set's own edge, Depth, Normal) has a role: **Off** ignores it, **Include** adds it to the line set, **Mask** keeps the line set only where that channel also detects. When several channels are set to Mask, the line survives only where all of them detect. Use Mask for targeted gap fillers.
+
+```
+Depth and Normal channels also have a threshold source: **Varying Threshold** (default) uses the main Depth/Normal threshold, which can vary across the mesh because it comes from Geometry Nodes and the material. **Uniform Threshold** uses the single value below it instead, which greys out under Varying.
+
+**Depth** and **Normal** at the bottom of the list are the same thing in reverse. The main passes get the same combine stage, so you can mask Depth by an ID rather than the other way round. They add a dropdown for which ID to combine with, and only carry a threshold for the *other* channel, since their own is up in Thresholds.
+```
 
 ---
 

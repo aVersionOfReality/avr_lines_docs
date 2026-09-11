@@ -38,7 +38,7 @@ This tool is inspired by the line art system from the [Malt render engine](https
 ## Requirements
 
 - **Blender 5.2 or newer.** The addon uses compositor and geometry nodes that don't exist in earlier versions.
-- **EEVEE.** The line data uses AOVs, which are only supported in the viewport ini EEVEE. So it doesn't work in the viewport in Cycles. Full renders should work properly in Cycles, but that has not been put through practical testing yet. This has been an EEVEE focused tool for the first version, and Cycles will get more attention going forward.
+- **EEVEE.** The line data uses AOVs, which are only supported in the viewport in EEVEE. So it doesn't work in the viewport in Cycles. Full renders should work properly in Cycles, but that has not been put through practical testing yet. This has been an EEVEE focused tool for the first version, and Cycles will get more attention going forward.
 - **A GPU that runs EEVEE and the GPU compositor.** The compositor runs on the GPU by default and is far slower on CPU. This tool should technically work on the CPU, but its so slow I wouldn't bother.
 - **4 GB VRAM minimum, 8 GB recommended.** On low end cards, the compositor may spill into system memory at very high resolutions, which will still work but slows down a lot. 8 GB is comfortable for 4K. Heavy additional compositing in the same scene (Denoise, Glare, large Blur) competes for the same memory and matters more than resolution alone.
 - **Room in your materials.** EEVEE allows at most 15 attributes per material, and the addon's shader group uses 6 of them. That leaves roughly 8 for your own attributes (including UV maps). Depending on your own setup this could get tight if you're using a lot of your own. But the limit can be worked around with packing your data, or even baking the line attributes to textures. The panel warns you before you hit the limit.
@@ -73,6 +73,8 @@ It is a good fit if you want lines driven by shading and texture data rather tha
 
 It is a poor fit if you need hidden-line output, lines on complex partially transparant surfaces, stroke-level control such as tapering along a stroke, textured or brush-like strokes, vector quality, or vector output. Those need a geometry-based line tool. It also needs anti-aliasing handled the way described above, which not every pipeline can accommodate. And if you just want to slap uniform thin lines over the whole image, just use the standard filter nodes.
 
+It is also an early version of a workflow that hasn't really been available in Blender before, so expect it to keep moving for a while. Existing files shouldn't break between versions, but they will probably need adjusting. **Update Nodes** brings in the new node groups and keeps your parameter values, which should cover most changes. But it can't re-author your setup when the better ways of doing something come, or systems are improved. See [Future Plans](future-plans.md).
+
 Read these before buying:
 
 - **[How It Works](how-it-works.md)** — the method in brief, and what it can and can't see.
@@ -92,6 +94,12 @@ Read these before buying:
 
 ## Support
 
-- **Questions and bug reports:** [aversionofreality@gmail.com](mailto:aversionofreality@gmail.com)
-- **Discord:** see the README included in the download.
+The **support Discord invite and support email** are in the README included in your download.
+The Discord is the fastest way to get help or report a bug.
+
+Elsewhere, not for support:
+
+- **Website:** [aversionofreality.com](https://aversionofreality.com)
+- **YouTube:** [@aVersionOfReality](https://www.youtube.com/@aVersionOfReality)
+- **X:** [@AversionReality](https://x.com/AversionReality)
 
