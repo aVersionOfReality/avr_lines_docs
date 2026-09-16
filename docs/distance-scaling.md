@@ -1,10 +1,5 @@
 # Distance Scaling
 
-!!! info "Work in progress"
-    This page is **minimum viable content** for the initial release. The text covers
-    the essentials, but images, diagrams, and clips are still being made, and some
-    sections will be expanded. More is being added over the coming weeks.
-
 Distance scaling varies line width by distance. Thinner lines as things recede, or thicker lines up close. It has nothing to do with the [Pixel and Adaptive width modes](width-and-scaling.md), which are about resolution and lens.
 
 ## How to use it

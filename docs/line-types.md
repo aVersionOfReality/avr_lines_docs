@@ -1,10 +1,5 @@
 # Line Types
 
-!!! info "Work in progress"
-    This page is **minimum viable content** for the initial release. The text covers
-    the essentials, but images, diagrams, and clips are still being made, and some
-    sections will be expanded. More is being added over the coming weeks.
-
 Lines come from differences between neighboring pixels, so you can draw a line on *any* data that differs between regions. Several line types are set up by default for common data, plus three fully custom passes for anything else.
 
 ## The built-in line types
@@ -41,6 +36,8 @@ This makes the use of this line set somewhat arbitrary since it depends so much 
 ### Custom ID 1–3
 
 Three general-purpose ID passes. Feed them anything: face attributes, vertex colors, painted or procedural textures in the shader, even toon-shading bands. See [Object & Custom IDs](custom-ids.md) for how to author them.
+
+![A Surface ID pass, the lines it produces, and the two combined](images/info_id_to_lines-1.png){ width="860" }
 
 ### Marked Edges
 

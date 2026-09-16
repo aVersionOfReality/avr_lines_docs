@@ -36,9 +36,9 @@ Per-material overrides of the data coming from Geometry Nodes. Each pair is a **
 
 ### Taper falloff (Power nodes)
 
-There are three Power nodes in the group, on the Width Scale after the attribute is multiplied by the matching input. They're all set to 1 by default, which does nothing.
+There are three Power nodes (or vector math power) in the group, on the Width Scale after the attribute is multiplied by the matching input. They're all set to 1 by default, which does nothing.
 
-What they do: if you taper a line end with a vertex group, the fade happens across whatever face the values change over. So the length of the taper is set by your topology rather than by you, and it's linear, which usually looks bad. Running the mask through a Power changes the shape of that falloff. Values **below** 1 keep the line near full width and then drop off quickly, which gives a better tip shape. I get good results from 0.5 and 0.333. Above 1 does the opposite and mostly just looks thin and dragged out.
+What they are for: if you taper a line end with a vertex group, the fade happens across whatever face the values change over. So the length of the taper is set by your topology rather than by you, and it's linear, which usually looks bad. Running the mask through a Power changes the shape of that falloff. Values **below** 1 keep the line near full width and then drop off quickly, which gives a better tip shape. I get good results from 0.5 and 0.333. Above 1 does the opposite and mostly just looks thin and dragged out.
 
 They only affect the per-line-set scales (Normal, Depth, Object, Custom ID 1–3, Marked Edges). Mask All and Scale All aren't touched, because those already come in as inputs and you can put your own Power on them outside the group.
 

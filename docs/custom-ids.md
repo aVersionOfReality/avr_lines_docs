@@ -1,10 +1,5 @@
 # Object & Custom IDs
 
-!!! info "Work in progress"
-    This page is **minimum viable content** for the initial release. The text covers
-    the essentials, but images, diagrams, and clips are still being made, and some
-    sections will be expanded. More is being added over the coming weeks.
-
 Depth and normal detection only go so far. Object IDs and Custom IDs let you draw lines wherever you define a region. Use them for any areas where you always want a line. This works for creating lines between different surfaces, and also detail lines on the same surface. ID lines give the best results and should be used for the majority of your lines. Use them to separate different parts of a character's outfit, or for sharp edges on a hardsurface mesh, or even for seams on clothing. And you can use the [advanced line set options](#advanced-line-set-options) to mix additional Normal and Depth lines into custom IDs to catch those sorts of areas while sharing the ID line set's width. See [Line Types](line-types.md) for more info.
 
 ## How IDs work
@@ -16,6 +11,8 @@ IDs can be authored in many ways. You can manually create them with Vertex Paint
 The big limitation of IDs is that they cannot support a floating, disconnected edge/line by definiton. Since they must be solid regions, every line must connect to another one, or to a mesh boundary. This must be planned for when marking them on a mesh. If you have a situation that does need a free floating line tip, then your choices are to extend and connect the line and then scale that area to 0 thickness to hide it (which can be unreliable at different camera angles), or use the [Marked Edges](marked-edges.md) system, which is a more robust version of that (but costs more attributes, AOV passe, and computation.)
 
 If you are using thick lines anyway, you can also work around the limitation by having multiple different region boundaries right next to each other. This will cause overdetection of lines and force a minimum thickness. But that doesn't matter if you were going to have them at least that thick anyway.
+
+![A Surface ID pass, the lines it produces, and the two combined](images/info_id_to_lines-1.png){ width="860" }
 
 ### Combining IDs
 
@@ -36,6 +33,10 @@ The **Treat Islands as Objects** option (Geo_Data) extends this: each connected 
 
 Three custom ID passes let you draw lines on regions you define. There are two places to author them, and you can combine both.
 
+![Major Contours, Detail Contours, Surface Details, and the four combined](images/info_line_sets-1.png){ width="860" }
+
+Each set can detect something different and carry its own width, and they add together into the final lines.
+
 ### From mesh attributes (Geometry Nodes)
 
 Author **Face** data where each region has a distinct value, and point a Custom ID input at that attribute name.  The [Authoring Tools](authoring-tools.md) can generate these for you.
@@ -46,6 +47,10 @@ Author **Face** data where each region has a distinct value, and point a Custom 
 ### From the shader
 
 Feed a Custom ID from anything in the material, such as a texture, a procedural mask, or toon bands. Use **ramps** or **steps** to snap values into flat regions so there are no gradients to overdetect.
+
+![Toon shading, a voronoi texture, and painted brush strokes, each producing lines](images/info_any_data-1.png){ width="860" }
+
+Hard edge toon shading, a voronoi procedural texture, and some brush strokes painted by hand. Any of it works as long as the shades are flat.
 
 ## Advanced Line Set Options
 

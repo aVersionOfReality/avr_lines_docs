@@ -1,10 +1,5 @@
 # Marked Edges
 
-!!! info "Work in progress"
-    This page is **minimum viable content** for the initial release. The text covers
-    the essentials, but images, diagrams, and clips are still being made, and some
-    sections will be expanded. More is being added over the coming weeks.
-
 Marked edges are a special form of [Custom IDs](custom-ids.md). ID lines are drawn between regions holding different flat values, so on their own they can only follow boundaries that fully enclose an area. Marked edges can also handle floating lines that don't connect to anything. The trick is that, under the surface, it actually does complete a full region. The floating edge gets connected to a mesh boundary or another marked line, and these connection edges are masked out of the detection. But this requires an extra Attribute and AOV in the sahder over regular ID group lines (and you only get 15 total attributes in an Eevee material!) So it is kept as an extra optional line set that can be disabled via the addon to save those resources (or disabled per-material by making a copy of Shader_Data for that material and deleting the nodes in the marked edges frame.)
 
 ## How it works

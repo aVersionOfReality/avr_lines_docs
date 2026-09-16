@@ -1,10 +1,5 @@
 # Troubleshooting
 
-!!! info "Work in progress"
-    This page is **minimum viable content** for the initial release. The text covers
-    the essentials, but images, diagrams, and clips are still being made, and some
-    sections will be expanded. More is being added over the coming weeks.
-
 Start here if something looks wrong. The **Warnings** section of the add-on panel catches most setup problems automatically, so check it first.
 
 ## Common problems
@@ -22,7 +17,7 @@ Start here if something looks wrong. The **Warnings** section of the add-on pane
 ### Lines are doubled, blurry, or too thick
 
 - **Anti-aliasing is probably still on.** Set Render → Film → **Filter Size = 0**. AA makes single edges detect multiple times. See [Technical Notes](technical-notes.md).
-- **Lines look soft or the AA isn't good enough?** Supersample. Render larger and scale down at the end of the compositor. See [Downscaling a supersampled render](width-and-scaling.md#downscaling-a-supersampled-render).
+- **Lines look soft or the AA isn't good enough?** Supersample. Render at double resolution and scale down to 50% (0.5) the end of the compositor. See [Downscaling a supersampled render](width-and-scaling.md#downscaling-a-supersampled-render).
 - **Is it only along the edge of frame?** The compositor's Anti-Aliasing node blurs the outermost pixels, since its samples clamp back onto the border pixel. Render a little larger and crop. See [Known Issues](known-issues.md).
 - **A 1 px line renders 2 px.** That's the floor, not a bug. See [Line thickness and the 2 pixel floor](technical-notes.md#line-thickness-and-the-2-pixel-floor-for-coplanar-lines).
 
@@ -47,7 +42,7 @@ Start here if something looks wrong. The **Warnings** section of the add-on pane
 
 - You may not have enough VRAM and System RAM is being used too, which is slower. Could happen at very high resolutions on lower end cards.
 - **Max Width is too high.** Every pixel pays for the full expansion range. Drop it to the smallest preset that covers your thickest line. See [Width & Scaling](width-and-scaling.md).
-- Don't run the Line_Art group twice; mix inputs instead. See [Technical Notes](technical-notes.md).
+- **Running the Line_Art group more than once won't be the cause here.** The copies execute in series, so they don't add up in memory. They do each cost their full execution time again though, so check there if things are slow rather than spiking. See [Technical Notes](technical-notes.md).
 
 
 
@@ -56,6 +51,7 @@ Start here if something looks wrong. The **Warnings** section of the add-on pane
 - **Did you run Set Marked Edge Boundaries?** The region data marked edges read is saved onto the mesh. Mark your edges, then run the tool. Run it again whenever you change which edges are marked.
 - **Is Use Marked Edges enabled?** It defaults to off, since it costs an attribute slot and some performance.
 - **Are some of the lines missing rather than all of them?** Check the console after running the tool. If it reports unresolved boundaries, those chains don't close properly and can't be told apart from their completion edges. See [Marked Edges](marked-edges.md#splitting-mixed-boundaries).
+- **Are they showing up but noisy, and only in the viewport?** Check whether any part of the camera frame is cut off by the edge of the viewport. That breaks the dimensions the compositor works from, which puts noise on marked edge lines. Frame the whole camera and it clears. See [Known Issues](known-issues.md#camera-and-viewport).
 
 
 
@@ -78,15 +74,13 @@ The line data is carried by **AOVs**, and in the viewport those are only written
 
 Everything else should work in Cycles, but it has not been through practical testing yet. This has been an EEVEE first tool. Cycles will get more attention going forward, so if you are relying on it, say so.
 
-
-
 ### Material attribute limit
 
-EEVEE can bind at most **15 attributes per material**. Ask for more and the extras are *silently dropped*: no error, no message in the console. The affected attribute simply reads as blank or wrong, which usually shows up as a line set that stops working on one material while it still works everywhere else.
+EEVEE can bind at most **15 attributes per material**. Using more doesn't necessarily show any error. Often data just gets dropped and you may not notice right away.
 
-"Attributes" here means anything the material pulls off the mesh: Attribute nodes, UV maps, color attributes, an Image Texture with nothing plugged into its Vector input (as that implicitly uses a UV map), Normal Map and Tangent nodes. Two nodes reading the *same* attribute only cost one slot.
+"Attributes" means anything from the mesh: Attribute nodes, UV maps, color attributes, an Image Texture with nothing plugged into its Vector input (as that implicitly uses a UV map), Normal Map and Tangent nodes. Two nodes reading the *same* attribute only cost one slot.
 
-`AVR_Lines: Shader_Data` **uses 6 of them** (`AVR_lines_color`, `AVR_lines_scale`, `AVR_lines_thresholds`, `AVR_lines_ID_mesh`, `AVR_lines_ID_scales`, `AVR_lines_marked`), plus one built-in. So on a material with the group added you have roughly **8 slots left** for your own texturing. That is plenty for most work, and tight for heavily layered materials.
+`AVR_Lines: Shader_Data` **uses 6 of them** (`AVR_lines_color`, `AVR_lines_scale`, `AVR_lines_thresholds`, `AVR_lines_ID_mesh`, `AVR_lines_ID_scales`, `AVR_lines_marked`), plus one built-in. So on a material with the group added you have roughly **8 slots left** for your own setup. That is plenty for most work, but may get tight for some styles.
 
 The add-on warns when a Shader_Data material reaches 13 or more.
 
@@ -97,6 +91,7 @@ The add-on warns when a Shader_Data material reaches 13 or more.
 - **Pack data into unused channels.** A color attribute carries four values; three separate float attributes cost three slots.
 - **Turn off line features you are not using.** Disabling **Use Marked Edges** clears the `AVR_lines_marked` attribute from the group, giving that slot back across every material. It also stops the two marked AOVs being written.
 - **Delete unused Attribute nodes from the group by hand, or unset their attribute.** Make a new copy of the group for that specific material first, or expand the group. Note that *disconnecting* them is not enough. See below.
+- **Bake your attributes to textures.** Unless they need to update every frame (such as an attribute calculated by geometry nodes), then they can just be an image texture.
 
 **Why disconnecting a node isn't enough**
 

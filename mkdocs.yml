@@ -46,17 +46,18 @@ nav:
       - Installation: installation.md
       - Quick Start: quick-start.md
   - Concepts:
+      - Infographics: infographics.md
       - How It Works: how-it-works.md
       - Line Types: line-types.md
       - Width & Scaling: width-and-scaling.md
       - Object & Custom IDs: custom-ids.md
       - Marked Edges: marked-edges.md
       - Distance Scaling: distance-scaling.md
-  - Reference — Addon:
+  - Reference - Addon:
       - The Addon Panel: addon-panel.md
       - Setup Tools: setup-tools.md
       - Authoring Tools: authoring-tools.md
-  - Reference — Node Groups:
+  - Reference - Node Groups:
       - Line_Art (Compositor): node-line-art.md
       - Shader_Data: node-shader-data.md
       - Geo_Data: node-geo-data.md

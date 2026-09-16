@@ -1,10 +1,5 @@
 # Width & Scaling
 
-!!! info "Work in progress"
-    This page is **minimum viable content** for the initial release. The text covers
-    the essentials, but images, diagrams, and clips are still being made, and some
-    sections will be expanded. More is being added over the coming weeks.
-
 How thick your lines get and how to vary that per line type in the Geometry Nodes, Material, or Compositor.
 
 ## Base Width and per-type scales
@@ -23,6 +18,12 @@ There's also **Mask All** and **Scale All**, which both multiply every line type
 
 !!! note "Reference settings"
     Adaptive mode compares the current render to **Reference Resolution X/Y** and **Reference Focal Length**. If you authored settings in Pixel mode and want to keep them, set these to the resolution and lens you authored your widths at.
+
+Beyond the plain values, any data you can get into the pipeline can drive a scale. Here lines are scaled by diffuse shading, so they thin out in the lit areas:
+
+![Uniform lines, a shading pass, and lines scaled by that shading](images/info_width_scaling-1.png){ width="860" }
+
+The scale is set per line set in Geometry Nodes, passes to the material as an Attribute where you can modify it, then goes to the compositor as an AOV. Vertex groups, attributes, textures, shaders, anything you plug in. See [Line Types](line-types.md#driving-scales-with-data).
 
 Distance-from-camera scaling is a separate feature, see [Distance Scaling](distance-scaling.md).
 
@@ -53,7 +54,7 @@ If you are rendering large to scale down, do it with a **Scale** node at the ver
 
 ![A Scale node set to Relative 0.5 with Anisotropic sampling, before the Group Output](images/ref_nodes_scale_downsample-1.png){ width="551" }
 
-Scaling down after detection is why supersampling helps in the first place. Detection runs at the large resolution, so it resolves detail a smaller render would miss, and the downscale then anti-aliases the result properly.
+Scaling down after detection is why supersampling helps in the first place. Detection runs at the large resolution, so it resolves detail a smaller render would miss, and the downscale then anti-aliases the result properly. Blender's downsampling with the scale node is not very advanced, so only use it to scale by exactly 0.5. If you wanted 25%, chain two 0.5 nodes. Or save out at full resolution and do the downsampling in another image program that can handle it better.
 
 !!! note
     If you are working with very thick lines at super resolutions (such as rendering at 8k so you can downsample to 4k), then 78px thick may not be enough. That limit is only there because each Jump Flood Pass is another copy of the nodes. Adding another pass would be a nightmare by hand, but I've got it on my todo list to add the option to add more as the complex groups are built with python anyway. If you manage to hit the limit before I get around to this, shoot me a message and I'll prioritize it.

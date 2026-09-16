@@ -12,6 +12,8 @@ The tool is a Blender **extension**, installed from disk.
 - **Gumroad**: coming soon
 - **Superhive**: coming soon
 
+
+
 ## Install the extension
 
 1. Download the extension `.zip`.
@@ -30,6 +32,8 @@ Open the **N-panel** in the 3D Viewport (press N) and select the **aVersion_Line
 Next: **[Quick Start](quick-start.md)** to get lines on screen.
 
 ---
+
+
 
 ## Manual / Node-Only Setup
 
@@ -65,6 +69,8 @@ Add these view-layer AOVs with these **exact names**, all type **Color**:
 | `AVR_lines_RGB`           | Color |
 
 
+
+
 ### 3. Render settings
 
 - Enable the **Depth** pass: View Layer → Passes → Data → Z.
@@ -72,6 +78,8 @@ Add these view-layer AOVs with these **exact names**, all type **Color**:
 - Set **Compositor Device = GPU** (Compositor N-panel → Options). CPU works but is very slow.
 - For colored lines in the viewport, enable **Full precision** in the same tab to avoid Z-fighting.
 - If you want lines in the viewport, set the viewport **Compositor** to Always.
+
+
 
 ### 4. Add the data groups to objects
 
@@ -89,6 +97,6 @@ For each object you want lines on:
 - Combine the **Lines** output with your render (usually an **Alpha Over** node).
 - Because film AA is off, add an **Anti-Aliasing** node for the main render. The lines have their own AA inside the group; a second AA pass over everything last doesn't hurt.
 - Note that the Anti-Aliasing node can blur the outermost pixels of the image. If you need a clean border, render slightly larger and crop. See [Known Issues](known-issues.md).
-- If you are supersampling (rendering large to scale down), put a **Scale** node last, after everything else. Type *Relative*, X and Y at the fraction you want, Sampling set to *Anisotropic*. See [Width & Scaling](width-and-scaling.md#downscaling-a-supersampled-render).
+- If you are supersampling (rendering large to scale down), put a **Scale** node last, after everything else. Type *Relative*, X and Y at 0.5, Sampling set to *Anisotropic*. See [Width & Scaling](width-and-scaling.md#downscaling-a-supersampled-render).
 
 See also: [How It Works](how-it-works.md) · [Setup Tools](setup-tools.md) · [Technical Notes](technical-notes.md)

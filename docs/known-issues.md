@@ -1,10 +1,5 @@
 # Known Issues and Limitations
 
-!!! info "Work in progress"
-    This page is **minimum viable content** for the initial release. The text covers
-    the essentials, but images, diagrams, and clips are still being made, and some
-    sections will be expanded. More is being added over the coming weeks.
-
 What the tool can't currently do, and why. Some of these are technical limitations of the tool itself, some are limitations of the method (Screen Space Extraction), and some are limitations of doiing line art in 3D at all.
 
 For *setup* problems (no lines at all, doubled lines, and so on) see [Troubleshooting](troubleshooting.md) instead.
@@ -40,6 +35,11 @@ The tool detects lines from what the camera rendered, and most of the limits bel
 - **Everything is measured from the Active Camera:** Width scaling uses its FOV, and the camera-based distance scaling modes use its position. In the viewport that's only correct inside the camera frame, which is why the addon defaults the viewport compositor to *Camera Only*.
 - **Camera-relative distance scaling is geometry nodes only:** Getting *any* camera position into a shader, by Python or by driver, recompiles the material every time the camera moves. So the material `Distance_Scale` group has no mode that reads the camera's position, and the camera-relative sources live in `Distance_Scale_GN`. Proper Z Depth can be computed in geometry nodes too and will probably be added later, but doing it there is extra computation when its already computed for the shader. Z Depth is generally the better choice over camera-relative anyway, but it may suit some styles. See [Distance Scaling](distance-scaling.md#z-depth-vs-distance-to-the-camera).
 - **The viewport compositor works at the size of the camera frame on screen**, not at render resolution. Adaptive threshold scaling matches detection to a render, but the viewport still can't preview detail below its own pixel scale.
+- **Part of the camera frame being off screen breaks detection near the border:** If you unlock the active camera and zoom in, or pan so any part of the camera frame leaves the viewport, the dimensions the compositor receives no longer describe the whole frame. Two symptoms come out of that, both only in the viewport and neither affecting an F12 render:
+    - **Dead zones near the border inside the camera frame**, where lines simply don't draw.
+    - **Noise on marked edge lines**, anywhere in frame rather than only at the border.
+
+    Keep the whole camera frame visible while working. Zooming the camera view itself is fine; it's the frame being cut off by the edge of the viewport that causes it. If you need to work zoomed in past that point, check line output in a fully framed view before trusting it.
 
 !!! note "Why the viewport camera isn't used"
     The viewport navigation camera lives on the editor Space rather than a datablock, so no driver can reach it, and fetching its position with Python means writing shader node values every frame. That throws away every compiled material using the group, which you see as surfaces flashing grey while you orbit. Using the Active Camera also avoids confusion caused by different lens or FOV settings as it is the same as in full renders.
@@ -95,7 +95,7 @@ These affect how the line art looks, rather than whether it works.
 
 - **Cost of the compositor is flat per pixel**, no matter how complex the scene is. Every pixel gets evaluated whatever is in it, so heavy geometry costs no more than low poly, except for the Geometry Nodes. But they are just storing data and won't become a problem unless meshes are very large, in which case you can bake or apply most of their data and only rerun them when changes are made.
 - **Max Width is the main cost:** Every pixel pays for the full expansion range even where lines are thin, so set it to the smallest preset that covers your thickest line. See [Width & Scaling](width-and-scaling.md).
-- **Adding the Line_Art group more than once re-runs the whole setup:** Mix your input values into a single instance instead. Taking several outputs off one instance is fine.
+- **Adding the Line_Art group more than once re-runs the whole setup:** This isn't a VRAM concern, as the copies execute in series rather than all at once. But each copy adds its full execution time again, so it can get slow. Mix your input values into a single instance if you need the speed. Taking several outputs off one instance is free.
 - **Avoid intersecting meshes:** Where two meshes pass through each other the surfaces genuinely meet at the same depth, so there is nothing to sort them by and no amount of precision fixes it. The expansion can't decide which line is in front, so it flickers between them, and the same confusion affects other line types along the intersection. Model the join properly, or keep a small gap, rather than letting meshes clip. This is most visible in **Varying Color** mode, where the competing lines are different colors, but it isn't limited to it. Intersections cause issues in all 3D line detection that can see them (not Freestyle), but it is particularly noticable with colored Screen Space Lines due to the noise it creates being pixel level.
 - **Half precision widens that problem to lines that are merely close:** At half precision the compositor can't reliably separate depths that are near each other, not just identical, so the same flickering appears in places that aren't actual intersections. This part only affects the **viewport**, since final renders already composite at full precision. Set compositor precision to **Full** to match the render while you work, at the cost of doubling the memory of every intermediate buffer.
 - **It is slower than Malt:**  [Malt](https://malt3d.com/) is a dedicated NPR render engine and can do things the compositor can't. This should improve as the compositor gains features, but won't catch up to Malt without a dedicated Jump Flood node in the compositor.

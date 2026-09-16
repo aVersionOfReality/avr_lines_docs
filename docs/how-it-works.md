@@ -1,10 +1,5 @@
 # How It Works
 
-!!! info "Work in progress"
-    This page is **minimum viable content** for the initial release. The text covers
-    the essentials, but images, diagrams, and clips are still being made, and some
-    sections will be expanded. More is being added over the coming weeks.
-
 !!! note "Everything here is about Blender"
     Comparisons and limitations on this page are specific to Blender, the tools that ship with it, and what can reasonably be built inside it. Other software solves some of these problems differently.
 
@@ -73,7 +68,10 @@ Detection finds one pixel wide edges. To make lines thick, the tool expands thos
 
 ## What comes out
 
-The Line_Art group outputs a line image, plus a few debug passes. You combine it with your render however you like, usually with an **Alpha Over** node. As far as Blender is concerned these are just pixels in the compositor, so you can treat them like any other image and style them from there.
+The Line_Art group outputs a line image, plus a few debug passes. You combine it with your render however you like, usually with an **Alpha Over** node.
+
+![Render, Lines, and the two combined](images/info_line_combine-1.png){ width="860" }
+ As far as Blender is concerned these are just pixels in the compositor, so you can treat them like any other image and style them from there.
 
 ---
 

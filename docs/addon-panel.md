@@ -66,7 +66,7 @@ Everything the line system measures (FOV, focal length, adaptive-width scaling, 
 - **Rendered:** The same options, applied to Rendered viewports.
 
 !!! warning "Keep the whole active camera frame in view"
-     If you unlock the active camera and zoom in, or move the view so part of the active camera is off screen, it can cause dead zones near the border inside the camera frame where lines won't draw. This is due to some issue with Dimensions inputted into the compositor. If your lines are disappearing near the edges of the camera in the viewport while zoomed in on it, this is why. See [Known Issues](known-issues.md).
+     If you unlock the active camera and zoom in, or move the view so part of the active camera is off screen, the dimensions the compositor receives stop describing the whole frame. That causes dead zones near the border inside the camera frame where lines won't draw, and it can also put noise on marked edge lines anywhere in frame. If your lines are disappearing near the edges of the camera in the viewport while zoomed in on it, or marked edges have gone noisy, this is why. Both are viewport only and don't affect a render. See [Known Issues](known-issues.md#camera-and-viewport).
 
 **Line Detection:**
 

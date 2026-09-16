@@ -11,7 +11,7 @@
 - It is **slower than Malt**, which the compositor is the reason for, but still fast compared to most ways of getting advanced lines in Blender. [Malt](https://malt3d.com/) is the deeper tool if you want more quality and options and don't mind a custom render engine.
 - This should **improve as the Compositor gains features**, but it won't catch Malt without a dedicated Jump Flood node in the compositor.
 - **Max Width is what dominates the cost.** Only use what you need. The high values are mainly for high resolution renders you intend to scale down. See [Width & Scaling](width-and-scaling.md).
-- **Don't add the Line_Art group more than once.** Each one is a separate copy of the whole heavy setup and costs you accordingly. If you want two different results, mix the input values into a single instance instead of running two with different inputs.
+- **Adding the Line_Art group more than once costs time, not VRAM.** The copies execute in series, so they don't stack up memory the way you might expect. But each one is a full copy of the whole heavy setup, so each adds the same execution time again. Two instances take about twice as long. If that's too slow, mix the input values into a single instance instead of running two with different inputs.
 - Taking **several outputs off one instance is fine.** The compositor evaluates each node once however many things read it, so using the outputs multiple times costs nothing extra.
 
 
@@ -25,7 +25,7 @@ This is the tool's main friction with normal workflows, though more options are 
 - Anti-Aliasing can **blur the outermost pixels of the image**. It samples a small neighborhood around each pixel, and at the border those samples fall off the edge of frame and get clamped back onto the border pixel, so that outer edge ends up blended from duplicated values. Render a little larger and crop if you need a clean border, or just keep anything important away from the very edge.
 - The AA node works best on high contrast data, but some line thicknesses will have feathering on diagonals. The setup actually uses multiple AA nodes with settings optimized for both situations and the two are *almost* indistinguishable, but you may still notice that Odd thickness lines look slightly better, and tapering lines can show very small issues in some situations. These issues are mostly at lower resolutions.
 - Lines **thinner than 1px** won't AA well by any method and can't reach full alpha, since you can't partially fill a pixel. **Minimum Width** (1 or 2) helps, and **Width Cutoff** throws the thinnest values away rather than letting them render as grey.
-- **Supersampling is the best workaround for all of this.** Render larger than you need and scale down at the end of the compositor with a Scale node. Detection runs at the bigger resolution so it resolves finer detail, and the downscale gives you real anti-aliasing instead of the AA node's approximation. It costs render time, but it sidesteps most of the quality loss above. See [Width & Scaling](width-and-scaling.md#downscaling-a-supersampled-render).
+- **Supersampling is the best workaround for all of this.** Render at double size and scale down by exactly 50% (0.5) at the end of the compositor with a Scale node. Detection runs at the bigger resolution so it resolves finer detail, and the downscale gives you real anti-aliasing instead of the AA node's approximation. It costs render time, but it sidesteps most of the quality loss above. See [Width & Scaling](width-and-scaling.md#downscaling-a-supersampled-render).
 
 !!! note "Potential fixes are coming"
     A proposal to run the compositor **before** AA instead of after (which is what Malt does) would resolve most of this. The Raycast node may also allow detection before AA. Both are being watched for future versions, with no timeline.
@@ -45,7 +45,7 @@ The test is a tolerance rather than exact equality. The two sides count as ambig
 
 The tolerance is a **ratio rather than a fixed distance**, so it scales with how far away the surface is. That keeps it consistent whatever scale you model at, and it tracks depth precision as well, since the depth buffer also gets coarser with distance. A fixed value would be too tight far from the camera and too loose up close.
 
-This applies to Marked Edge lines the same as any other. A marked chain drawn across a single flat surface is coplanar along its whole length, so in practice it is usually corrected — but where a marked edge runs along a silhouette, with something nearer in front of it, depth resolves the order and the near surface wins.
+This applies to Marked Edge lines the same as any other. A marked chain drawn across a single flat surface is coplanar along its whole length, so in practice it is usually corrected. But where a marked edge runs along a silhouette, with something nearer in front of it, depth resolves the order and the near surface wins.
 
 ## Transparency and the AOVs
 
@@ -70,9 +70,11 @@ Expansion works out which line is in front by comparing depth. Where two surface
 !!! note "Full compositor precision"
     The setup switches the **viewport** to Full precision. This is a different thing from the AOV storage below, it governs the compositor's own intermediate buffers.
 
-    It only changes the viewport. On Auto, Blender already composites final renders at full precision and only drops to half for interactive work, so really this setting is about making the viewport match what you'll get out of a render. It does nothing for actual intersections, which are ambiguous at any precision.
+```
+It only changes the viewport. On Auto, Blender already composites final renders at full precision and only drops to half for interactive work, so really this setting is about making the viewport match what you'll get out of a render. It does nothing for actual intersections, which are ambiguous at any precision.
 
-    Either way you notice this most in **Varying Color** mode, where the competing lines are different colors. In Uniform Color they both resolve to the same color, so the same ambiguity has nothing to show.
+Either way you notice this most in **Varying Color** mode, where the competing lines are different colors. In Uniform Color they both resolve to the same color, so the same ambiguity has nothing to show.
+```
 
 
 

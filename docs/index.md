@@ -1,6 +1,16 @@
 # aVersion_Lines
 
-**Screen-Space Extraction (SSE) Jump Flood line art for Blender's Compositor.**
+![aVersion_Lines](images/cover_16x9-1.png){ width="860" }
+
+**Screen-Space Extraction (SSE) Jump Flood line art for Blender's Compositor, with a node pipeline from Geometry Nodes > Material Nodes > Compositor, allowing data to be authored or altered at any step.**
+
+<video controls loop muted playsinline preload="metadata"
+       poster="images/turntable-1-poster.png"
+       width="860" style="max-width:100%;height:auto;">
+  <source src="images/turntable-1.mp4" type="video/mp4">
+  Your browser can't play this clip.
+  <a href="images/turntable-1.mp4">Download it instead</a>.
+</video>
 
 ## Where to get it
 
@@ -12,6 +22,7 @@
 - **[Installation](installation.md)**
 - **[Quick Start](quick-start.md)**
 - **[How It Works](how-it-works.md)**
+- **[Infographics](infographics.md)**
 
 ---
 
@@ -48,12 +59,12 @@ This tool is inspired by the line art system from the [Malt render engine](https
 
 ---
 
-
+![Render, Lines, and the two combined](images/info_line_combine-1.png){ width="860" }
 
 ## Core Features
 
 - **Multiple line types.** Depth, Normals, object IDs, three custom IDs, and marked edges, each with its own width scale and priority.
-- **Control at every level.** Per-object (Geometry Nodes), per-material (Shader Nodes), and per-pixel (any data you can put in a material). All the scales multiply together.
+- **Control at every level.** Per-object (Geometry Nodes), per-material (Shader Nodes), and per-pixel (any data you can put in a material). IDs, Thresholds, and Scales are initially created at the mesh level, then pass to the Shader via Attributes, then to the Compositor via AOVs.
 - **Draw lines on anything.** If two neighboring pixels differ in some value, you can turn that difference into a line: toon-shading, painted masks, procedural textures, custom attributes, etc.
 - **Marked edges.** Mark edges by hand and force them to be lines, including free-floating lines that don't enclose a region.
 - **Colored lines with proper depth sorting.** Closer lines take priority over further ones, rather than the thickest line always winning. Note: mesh intersections cause problems with depth, so colored lines don't mix well. Meshes must be kept very clean!
@@ -71,24 +82,26 @@ This tool is inspired by the line art system from the [Malt render engine](https
 
 It is a good fit if you want lines driven by shading and texture data rather than only geometry, if you need per-pixel control over thickness and color, or if you want very thick lines.
 
-It is a poor fit if you need hidden-line output, lines on complex partially transparant surfaces, stroke-level control such as tapering along a stroke, textured or brush-like strokes, vector quality, or vector output. Those need a geometry-based line tool. It also needs anti-aliasing handled the way described above, which not every pipeline can accommodate. And if you just want to slap uniform thin lines over the whole image, just use the standard filter nodes.
+It is a poor fit if you need hidden-line output, lines on complex partially transparant surfaces, stroke-level control such as tapering along a stroke, textured or brush-like strokes, vector quality, or vector output. Those need a geometry-based line tool (which this may support in the future, but not yet). It also needs anti-aliasing handled the way described above, which not every pipeline can accommodate. And if you just want to slap uniform thin lines over the whole image, just use the standard filter nodes. And while this tool supports inputting any sort of data, there is still authoring work. ie if you have Curvature you can use it to alter line scale, but this does not include node groups to calculate curvature (yet.)
 
-It is also an early version of a workflow that hasn't really been available in Blender before, so expect it to keep moving for a while. Existing files shouldn't break between versions, but they will probably need adjusting. **Update Nodes** brings in the new node groups and keeps your parameter values, which should cover most changes. But it can't re-author your setup when the better ways of doing something come, or systems are improved. See [Future Plans](future-plans.md).
+It is also an early version of a workflow that hasn't really been available in Blender before, so expect it to keep moving for a while. Existing files shouldn't break completely between versions, but they will probably need adjusting. **Update Nodes** brings in the new node groups and keeps your parameter values, which should cover most changes. But it can't re-author your setup when the better ways of doing something come, or systems are improved. See [Future Plans](future-plans.md).
 
 Read these before buying:
 
-- **[How It Works](how-it-works.md)** — the method in brief, and what it can and can't see.
-- **[Line Types](line-types.md)** — the kinds of lines available and what each is good for.
-- **[Known Issues and Limitations](known-issues.md)** — the honest list. Worth reading first.
+- **[How It Works](how-it-works.md)**: the method in brief, and what it can and can't see.
+- **[Line Types](line-types.md)**: the kinds of lines available and what each is good for.
+- **[Known Issues and Limitations](known-issues.md)**: the honest list. Worth reading first.
 
 
 
 ## Documentation
 
 - **Getting started:** [Installation](installation.md) · [Quick Start](quick-start.md)
-- **Concepts:** [How It Works](how-it-works.md) · [Line Types](line-types.md) · [Width & Scaling](width-and-scaling.md) · [Object & Custom IDs](custom-ids.md) · [Marked Edges](marked-edges.md) · [Distance Scaling](distance-scaling.md)
+- **Concepts:** [Infographics](infographics.md) · [How It Works](how-it-works.md) · [Line Types](line-types.md) · [Width & Scaling](width-and-scaling.md) · [Object & Custom IDs](custom-ids.md) · [Marked Edges](marked-edges.md) · [Distance Scaling](distance-scaling.md)
 - **Reference:** [The Addon Panel](addon-panel.md) · [Setup Tools](setup-tools.md) · [Authoring Tools](authoring-tools.md) · [Node Groups](node-line-art.md)
 - **Help:** [Troubleshooting](troubleshooting.md) · [Known Issues](known-issues.md) · [Future Plans](future-plans.md) · [Changelog](changelog.md)
+
+Longer form guides and video walkthroughs are still being worked on, and will land over the coming weeks.
 
 
 
