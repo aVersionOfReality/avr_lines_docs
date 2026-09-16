@@ -17,6 +17,8 @@
 - **Gumroad**: coming soon
 - **Superhive**: coming soon
 
+
+
 ## Get Started
 
 - **[Installation](installation.md)**
@@ -25,6 +27,8 @@
 - **[Infographics](infographics.md)**
 
 ---
+
+
 
 ## What It Is
 
@@ -84,6 +88,8 @@ It is a good fit if you want lines driven by shading and texture data rather tha
 
 It is a poor fit if you need hidden-line output, lines on complex partially transparant surfaces, stroke-level control such as tapering along a stroke, textured or brush-like strokes, vector quality, or vector output. Those need a geometry-based line tool (which this may support in the future, but not yet). It also needs anti-aliasing handled the way described above, which not every pipeline can accommodate. And if you just want to slap uniform thin lines over the whole image, just use the standard filter nodes. And while this tool supports inputting any sort of data, there is still authoring work. ie if you have Curvature you can use it to alter line scale, but this does not include node groups to calculate curvature (yet.)
 
+The biggest thing to watch out for is not specific to this tool at all, but to any 3D line art: For good results, meshes need to be very clean and built with the line art system in mind! All forms of line extraction will react badly to messy inputs. And the more complex of lines, the more it potentially exposes flaws. Since this tool allows for more inputs and very complex lines, you'll potentially have more problems if your inputs aren't clean! This isn't a magic button for good lines. It gives you the options and flexibility to make lines look good and removes restrictions other line tools have, but there is still a lot that goes into high quality lines.
+
 It is also an early version of a workflow that hasn't really been available in Blender before, so expect it to keep moving for a while. Existing files shouldn't break completely between versions, but they will probably need adjusting. **Update Nodes** brings in the new node groups and keeps your parameter values, which should cover most changes. But it can't re-author your setup when the better ways of doing something come, or systems are improved. See [Future Plans](future-plans.md).
 
 Read these before buying:
@@ -102,8 +108,6 @@ Read these before buying:
 - **Help:** [Troubleshooting](troubleshooting.md) · [Known Issues](known-issues.md) · [Future Plans](future-plans.md) · [Changelog](changelog.md)
 
 Longer form guides and video walkthroughs are still being worked on, and will land over the coming weeks.
-
-
 
 ## Support
 
