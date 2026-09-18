@@ -2,7 +2,7 @@
 
 The panel title has a small **?** button on the right that opens this documentation.
 
-![The aVersion_Lines panel](images/addon_panel_all-1.png){ width="520" }
+![The aVersion_Lines panel](images/addon_panel_all-1.png){ width="584" }
 
 ## Warnings
 
@@ -133,7 +133,7 @@ Everything the line system measures (FOV, focal length, adaptive-width scaling, 
 
 ### Advanced Line Set Options
 
-![The Advanced Line Set Options sub-panel](images/addon_panel_advanced_options-1.png){ width="482" }
+![The Advanced Line Set Options sub-panel](images/addon_panel_advanced_options-1.png){ width="584" }
 
 For when and why to use these, see [Advanced Line Set Options](custom-ids.md#advanced-line-set-options) in the Object & Custom IDs page.
 

@@ -4,20 +4,18 @@
 
 **Screen-Space Extraction (SSE) Jump Flood line art for Blender's Compositor, with a node pipeline from Geometry Nodes > Material Nodes > Compositor, allowing data to be authored or altered at any step.**
 
-<video controls loop muted playsinline preload="metadata"
-       poster="images/turntable-1-poster.png"
-       width="860" style="max-width:100%;height:auto;">
-  <source src="images/turntable-1.mp4" type="video/mp4">
+<video controls autoplay loop muted playsinline width="760"
+       poster="images/turntable_16x9-1_poster.jpg"
+       style="display:block;margin:1.2em auto;max-width:100%;height:auto;">
+  <source src="images/turntable_16x9-1.mp4" type="video/mp4">
   Your browser can't play this clip.
-  <a href="images/turntable-1.mp4">Download it instead</a>.
+  <a href="images/turntable_16x9-1.mp4">Download it instead.</a>
 </video>
 
 ## Where to get it
 
 - **Gumroad**: coming soon
 - **Superhive**: coming soon
-
-
 
 ## Get Started
 
@@ -28,11 +26,9 @@
 
 ---
 
-
-
 ## What It Is
 
-This tool creates line art directly from rendered images in Blender's Compositor. It uses neighboring pixel comparisons to detect edges from differences in depth, Normals, IDs, or any other data you feed it. Then it uses a Jump Flood algorithm to expand the detected lines, allowing for very thick lines at relatively little extra cost.
+This tool creates line art directly from rendered images in Blender's Compositor. It uses neighboring pixel comparisons to detect edges from differences in depth, Normals, Color IDs, or any other data you feed it. Then it uses a Jump Flood algorithm to expand the detected lines, allowing for very thick lines at relatively little extra cost.
 
 Most line art options work by analyzing the mesh to construct geometry strokes and then render them. They are strong when it comes to geometry features, but blind to everything else. They can't be used to draw lines on data from the shader such as the edges of toon shading or an arbitrary texture mapped onto the model (unless they are very fancy and combine elements of both approaches, like PSOFT Pencil+). But Screen Space Line Art can draw lines on any data sent to the Compositor as long as it is formatted correctly. And this addon allows line thickness to be scaled per pixel, and with data from any step in the pipeline, giving enormous artistic flexibility.
 
@@ -48,7 +44,16 @@ This tool is inspired by the line art system from the [Malt render engine](https
 
 ---
 
+<video controls autoplay loop muted playsinline width="760"
+       poster="images/scale_anim_16x9-1_poster.jpg"
+       style="display:block;margin:1.2em auto;max-width:100%;height:auto;">
+  <source src="images/scale_anim_16x9-1.mp4" type="video/mp4">
+  Your browser can't play this clip.
+  <a href="images/scale_anim_16x9-1.mp4">Download it instead.</a>
+</video>
 
+<p style="text-align:center;margin-top:-0.4em;"><em>Line sets and width scaling being
+switched on and off. Every change here is a parameter in the nodes.</em></p>
 
 ## Requirements
 

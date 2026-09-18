@@ -37,8 +37,8 @@ See [Line Types](line-types.md) for what these mean in practice.
 - **Depth Threshold Range:** Scales thickness of Depth lines based on how much they are over the threshold. Lines that barely meet it are thinner, creating soft falloff. Often messy, use with caution. Minimum Line Width can stop clean tapering.
 - **Depth Grazing Correction:** Masks depth lines based on facing angle to prevent every step being detected on surfaces curving away from the camera.
 
-!!! note "TODO: needs editing"
-    **Threshold resolution compensation.** Detection compares neighbouring pixels, and a pixel covers a different amount of world space at every resolution, so an uncompensated threshold detects more lines at low resolution and fewer at high. It also would not match between the viewport and a render, because the viewport compositor works at the size of the camera frame on your screen rather than the render resolution.
+!!! note "Threshold resolution compensation"
+    Detection compares neighbouring pixels, and a pixel covers a different amount of world space at every resolution, so an uncompensated threshold detects more lines at low resolution and fewer at high. It also would not match between the viewport and a render, because the viewport compositor works at the size of the camera frame on your screen rather than the render resolution.
 
     With **Threshold Scaling Mode** set to Adaptive (the default), the Depth and Normal thresholds are offset against the **Reference Resolution** so one value behaves the same everywhere. This applies to these sockets, and to the per-line-set thresholds inside the group. Working node-only, the compensation lives inside `.AVR_Lines: Detect_Lines`; the `Threshold Adaptive` boolean input switches it, and the `ref_resolution_x` / `ref_resolution_y` / `fit_code` value nodes supply the reference (the addon writes these).
 

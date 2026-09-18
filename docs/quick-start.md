@@ -8,7 +8,7 @@ Open the **aV_Line Art** N-panel → **Tools** → **[Setup Tools](setup-tools.m
 
 1. **Append Node Groups** brings the AVR_Lines node groups into your file.
 2. **Set Render Settings** enables the Depth pass, turns off anti-aliasing (Filter Size 0), sets the compositor to GPU, and creates the AOVs. Leave the defaults on for a first run.
-3. **Add Compositor Nodes** splices the Line_Art group into your compositor before the output, along with the anti-aliasing node.
+3. **Add Compositor Nodes** splices the Line_Art group into your compositor before the output, along with the anti-aliasing node. If the scene has no compositor tree, it makes one.
 4. **Add Geometry Node Group** adds the Geo_Data modifier to your selected objects.
 5. **Add AOV Group to Materials** adds the Shader_Data group to those objects' materials.
 

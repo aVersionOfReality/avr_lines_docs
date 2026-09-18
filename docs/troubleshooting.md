@@ -7,7 +7,7 @@ Start here if something looks wrong. The **Warnings** section of the add-on pane
 ### No lines at all
 
 - **Are you in a Cycles viewport?** AOVs are only written in the viewport by EEVEE, so a Cycles viewport has no line data to detect from. See [Engine support](#engine-support).
-- Is there a **compositor node tree**, and was **Add Compositor Nodes** run? The Line_Art group has to be wired into the compositor.
+- Was **Add Compositor Nodes** run? The Line_Art group has to be wired into the compositor.
 - Is the **Depth pass** enabled and are the **AOVs** created? (Run **Set Render Settings**.)
 - Are you in a context that shows the compositor, such as camera view or a **Rendered viewport** with the viewport compositor set to Always?
 - Check the **Warnings** section, which names most of these directly.

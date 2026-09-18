@@ -24,7 +24,7 @@ Opens a dialog of render-side toggles, all on by default:
 
 ## Add Compositor Nodes
 
-Splices an **Alpha Over**, an **Anti-Aliasing** node, and the **Line_Art** group into your compositor just before the output, wiring the Render Layers passes into the Line Art inputs.
+Splices an **Alpha Over**, an **Anti-Aliasing** node, and the **Line_Art** group into your compositor just before the output, wiring the Render Layers passes into the Line Art inputs. If the scene has no compositor tree yet, it creates one.
 
 !!! note "The AA node and the image border"
     The Anti-Aliasing node can blur the outermost pixels of the image, because its samples run off the edge of frame and clamp back onto the border pixel. Render a little larger and crop if that matters. See [Known Issues](known-issues.md).

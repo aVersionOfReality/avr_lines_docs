@@ -5,3 +5,9 @@ site/
 __pycache__/
 *.pyc
 .DS_Store
+
+# Local Obsidian vault config (per-machine editor state, not part of the site).
+.obsidian/
+
+# Internal planning notes — kept local, not published to the public repo.
+DOCS_STRUCTURE_PLAN.md
