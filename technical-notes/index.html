@@ -1,0 +1,1487 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../node-distance-scale/">
+      
+      
+        <link rel="next" href="../troubleshooting/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Temporary Technical Notes - aVersion_Lines Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#temporary-technical-notes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="aVersion_Lines Documentation" class="md-header__button md-logo" aria-label="aVersion_Lines Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            aVersion_Lines Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Temporary Technical Notes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="aVersion_Lines Documentation" class="md-nav__button md-logo" aria-label="aVersion_Lines Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    aVersion_Lines Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../infographics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Infographics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../how-it-works/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How It Works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../line-types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Line Types
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../width-and-scaling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Width & Scaling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../custom-ids/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Object & Custom IDs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../marked-edges/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Marked Edges
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../distance-scaling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Distance Scaling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference - Addon
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference - Addon
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../addon-panel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The Addon Panel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authoring-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authoring Tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference - Node Groups
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference - Node Groups
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../node-line-art/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Line_Art (Compositor)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../node-shader-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shader_Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../node-geo-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Geo_Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../node-distance-scale/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Distance_Scale
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Temporary Technical Notes
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Temporary Technical Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anti-aliasing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anti-aliasing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#line-thickness-and-the-2-pixel-floor-for-coplanar-lines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Line thickness and the 2 pixel floor for coplanar lines
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transparency-and-the-aovs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transparency and the AOVs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#depth-sorting-and-intersecting-meshes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Depth sorting and intersecting meshes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-line-data-reaches-the-compositor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How line data reaches the compositor
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#depth-and-normal-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Depth and Normal detection
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#version-specifics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version specifics
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Help
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Help
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting & FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../known-issues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Known Issues
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../future-plans/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Future Plans
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="temporary-technical-notes">Temporary Technical Notes</h1>
+<div class="admonition info">
+<p class="admonition-title">This page is a holding place</p>
+<p>These are working notes, not a finished page. What's here is accurate, but belongs somewhere
+else and will move. Read it for deeper technical info.</p>
+</div>
+<h2 id="performance">Performance</h2>
+<ul>
+<li>The cost of the compositor is <strong>flat per pixel</strong>. Every pixel gets evaluated whatever is in it, so heavy geometry costs no more than low poly.</li>
+<li>The <strong>Geo_Data modifier</strong> is the exception, since that does scale with mesh size. It's only storing data, so it won't bite unless your meshes are very large. If it does, you can bake or apply most of what it stores and only re-run it when you change something.</li>
+<li>It is <strong>slower than Malt</strong>, which the compositor is the reason for, but still fast compared to most ways of getting advanced lines in Blender. <a href="https://malt3d.com/">Malt</a> is the deeper tool if you want more quality and options and don't mind a custom render engine.</li>
+<li>This should <strong>improve as the Compositor gains features</strong>, but it won't catch Malt without a dedicated Jump Flood node in the compositor.</li>
+<li><strong>Max Width is what dominates the cost.</strong> Only use what you need. The high values are mainly for high resolution renders you intend to scale down. See <a href="../width-and-scaling/">Width &amp; Scaling</a>.</li>
+<li><strong>Adding the Line_Art group more than once costs time, not VRAM.</strong> The copies execute in series, so they don't stack up memory the way you might expect. But each one is a full copy of the whole heavy setup, so each adds the same execution time again. Two instances take about twice as long. If that's too slow, mix the input values into a single instance instead of running two with different inputs.</li>
+<li>Taking <strong>several outputs off one instance is fine.</strong> The compositor evaluates each node once however many things read it, so using the outputs multiple times costs nothing extra.</li>
+</ul>
+<h2 id="anti-aliasing">Anti-aliasing</h2>
+<p>This is the tool's main friction with normal workflows, though more options are coming.</p>
+<ul>
+<li>Edge detection compares neighboring pixel values, so it <strong>breaks on anti-aliased data</strong>. The blurring makes one edge detect as several, which adds thickness and wrecks threshold detection (worst on normals). So film AA has to be <strong>off</strong>.</li>
+<li>The compositor's <strong>Anti-Aliasing node</strong> puts AA back afterwards, but it's <strong>not as good as native AA</strong>. Depending on the project you may lose some quality, and if that matters you can treat this as a viewport preview and render your lines separately without AA for finals.</li>
+<li>Anti-Aliasing can <strong>blur the outermost pixels of the image</strong>. It samples a small neighborhood around each pixel, and at the border those samples fall off the edge of frame and get clamped back onto the border pixel, so that outer edge ends up blended from duplicated values. Render a little larger and crop if you need a clean border, or just keep anything important away from the very edge.</li>
+<li>The AA node works best on high contrast data, but some line thicknesses will have feathering on diagonals. The setup actually uses multiple AA nodes with settings optimized for both situations and the two are <em>almost</em> indistinguishable, but you may still notice that Odd thickness lines look slightly better, and tapering lines can show very small issues in some situations. These issues are mostly at lower resolutions.</li>
+<li>Lines <strong>thinner than 1px</strong> won't AA well by any method and can't reach full alpha, since you can't partially fill a pixel. <strong>Minimum Width</strong> (1 or 2) helps, and <strong>Width Cutoff</strong> throws the thinnest values away rather than letting them render as grey.</li>
+<li><strong>Supersampling is the best workaround for all of this.</strong> Render at double size and scale down by exactly 50% (0.5) at the end of the compositor with a Scale node. Detection runs at the bigger resolution so it resolves finer detail, and the downscale gives you real anti-aliasing instead of the AA node's approximation. It costs render time, but it sidesteps most of the quality loss above. See <a href="../width-and-scaling/#downscaling-a-supersampled-render">Width &amp; Scaling</a>.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Potential fixes are coming</p>
+<p>A proposal to run the compositor <strong>before</strong> AA instead of after (which is what Malt does) would resolve most of this. The Raycast node may also allow detection before AA. Both are being watched for future versions, with no timeline.</p>
+</div>
+<h2 id="line-thickness-and-the-2-pixel-floor-for-coplanar-lines">Line thickness and the 2 pixel floor for coplanar lines</h2>
+<p>Detection compares each pixel against its neighbors. Where two regions meet, the boundary runs <em>between</em> two pixels rather than through one, so both sides are candidates for the mark. Depth is what decides between them. The neighbor is kept if it's in front, and where the depth difference is too small to tell, both sides get kept and the mark comes out 2 pixels wide instead of 1 (well, technically, it is two single pixel lines next to each other).</p>
+<p>Keeping both sides is deliberate. Picking one of them arbitrarily would put the line half a pixel off the real boundary, and which side won would come down to internal values you have no control over, so lines would sit slightly left of some boundaries and slightly right of others. Marking both keeps the line centered on the edge it belongs to.</p>
+<p>The compositor then subtracts that extra pixel from the width before expanding, so the width you author is the width you get as long as its at least 2.</p>
+<ul>
+<li><strong>Where both sides are marked, the thinnest line is 2 pixels.</strong> Ask for 1 and you get 2, because a 2 pixel mark can't render thinner than itself. Widths of 2 and above are exact. Where depth does resolve which side is in front the mark is 1 pixel, and any width is exact.</li>
+<li><strong>Setting a width to 0 still turns the line off.</strong> The correction is skipped where there's no line to correct, so masking by driving a width to 0 works the way you'd expect.</li>
+</ul>
+<p>The test is a tolerance rather than exact equality. The two sides count as ambiguous when their depth difference falls under a small fraction of the distance to the camera, so it covers flat surfaces, coplanar regions, and anything close enough to coplanar. Where one side is genuinely nearer, depth picks it and the mark is 1 pixel. The width correction only applies in the ambiguous case.</p>
+<p>The tolerance is a <strong>ratio rather than a fixed distance</strong>, so it scales with how far away the surface is. That keeps it consistent whatever scale you model at, and it tracks depth precision as well, since the depth buffer also gets coarser with distance. A fixed value would be too tight far from the camera and too loose up close.</p>
+<p>This applies to Marked Edge lines the same as any other. A marked chain drawn across a single flat surface is coplanar along its whole length, so in practice it is usually corrected. But where a marked edge runs along a silhouette, with something nearer in front of it, depth resolves the order and the near surface wins.</p>
+<h2 id="transparency-and-the-aovs">Transparency and the AOVs</h2>
+<p>A material's <strong>Render Method</strong> decides whether it reaches the line system at all. This info here is all for <strong>EEVEE</strong>. I haven't tested transparency in Cycles, but it will most likely behave like Dithered does here.</p>
+<p><strong>Blended mode materials never reach the AOVs.</strong> EEVEE puts a material into the forward transparent pipeline when its Render Method is Blended and the shader actually produces transparency. That pipeline gets drawn separately and doesn't bind the render pass outputs at all.</p>
+<p>It's the <em>material</em> that gets excluded and not just the transparent pixels, so masking the transparency down to a small region doesn't help. And those surfaces don't occlude for detection either, so lines on geometry behind them come through as if the transparent surface wasn't there.</p>
+<p>Which makes Blended a handy way to exempt a material from lines completely, and the right choice when you want lines on something seen <em>through</em> a transparent surface.</p>
+<p><strong>Dithered materials go through the normal deferred path</strong>, so their AOVs get written and they detect like any other surface. The catch is that dithered alpha is stochastic. Partial transparency is resolved by taking a different surface at each sample, so a partly transparent region ends up as noise mixing the near and far surfaces together. Detection compares neighboring pixels, so if those two surfaces differ in anything being detected, every flip in that noise reads as an edge and the whole region fills in with lines. Give both surfaces the same values or scale to 0 to disable them in those areas. There is no actual fix for Partial Transparency and Dithered.</p>
+<h2 id="depth-sorting-and-intersecting-meshes">Depth sorting and intersecting meshes</h2>
+<p>Expansion works out which line is in front by comparing depth. Where two surfaces sit at the same depth there's nothing to compare, so the result is arbitrary and flickers as the camera moves.</p>
+<p><strong>Mesh intersections are the case that can't be fixed.</strong> Where two meshes pass through each other the surfaces genuinely do meet at the same depth along that seam, so no amount of precision resolves it, and it disturbs other line types along there too. The fix is modelling. Join the meshes properly or leave a small gap rather than letting them clip through each other. Intersections cause trouble for any 3D line method that can see them, but it's especially noticeable with colored screen space lines because the noise it creates is at pixel level.</p>
+<p><strong>Half precision in the viewport widens that out to depths that are merely close</strong>, since it can't separate nearby values reliably.</p>
+<div class="admonition note">
+<p class="admonition-title">Full compositor precision</p>
+<p>The setup switches the <strong>viewport</strong> to Full precision. This is a different thing from the AOV storage below, it governs the compositor's own intermediate buffers.</p>
+</div>
+<div class="highlight"><pre><span></span><code>It only changes the viewport. On Auto, Blender already composites final renders at full precision and only drops to half for interactive work, so really this setting is about making the viewport match what you'll get out of a render. It does nothing for actual intersections, which are ambiguous at any precision.
+
+Either way you notice this most in **Varying Color** mode, where the competing lines are different colors. In Uniform Color they both resolve to the same color, so the same ambiguity has nothing to show.
+</code></pre></div>
+<h2 id="how-line-data-reaches-the-compositor">How line data reaches the compositor</h2>
+<p>Everything the compositor detects from is written by the shader into 9 <strong>AOVs</strong>, and read back on the other side. In the viewport only EEVEE writes those, which is why a Cycles viewport shows no lines. A few things about that round trip are worth knowing if you ever edit the AOVs or author your own ID data.</p>
+<p><strong>Values have to be flat, not gradients.</strong> Detection compares neighboring pixels, so a gradient reads as a continuous run of differences and detects as a solid block rather than a line. That's why vertex data can't carry IDs, it interpolates across the face. See <a href="../custom-ids/">Object &amp; Custom IDs</a>.</p>
+<p><strong>Sub-pixel sampling blends values at boundaries.</strong> EEVEE resolves its samples after the shader runs, so a pixel straddling a region boundary stores the <em>average</em> of both sides rather than either one. Detection is built around that. It compares values for equality or against a threshold, and a blended value just matches neither side. Anything that tried to decode a packed or bit encoded value instead would turn that blend into a plausible but wrong answer, which is why the line data is kept as plain values.</p>
+<p><strong>AOV color passes are half float.</strong> IDs are values between 0 and 1, and half float spacing is relative rather than fixed, so how much room you have depends on where in that range the value sits. Down near 0.01 the gaps are tiny, but from 0.5 up to 1.0 the spacing is 1/2048, which is the worst case. There are around 15,000 distinct values available across the whole range, and evenly spread IDs stay safe up to about 1000 of them.</p>
+<p>Random values collide sooner than that though. Two IDs landing close enough to store as the same number only costs you anything if those two regions happen to be touching on screen, so in practice you would need a very complex setup before you saw it. When it does happen you get a missing line where you expected one, between two regions that look like they should differ. If you authored the ID yourself, changing its value fixes it. Making this properly robust is on the list for a future version, see <a href="../future-plans/">Future Plans</a>.</p>
+<h2 id="depth-and-normal-detection">Depth and Normal detection</h2>
+<p>Depth and Normal lines read data that varies pixel to pixel, which is what makes them less reliable than ID lines. They shift with small camera moves, detect areas only a few pixels across, and flicker or crawl in animation. Using both together covers most of each other's gaps, and the <strong>Advanced Line Set</strong> options (adding Depth and Normal into a Custom ID, or masking with them) give you finer control over where they apply. See <a href="../line-types/">Line Types</a> and <a href="../known-issues/">Known Issues</a>.</p>
+<p><strong>Depth detection can't tell a real depth discontinuity from steep curvature.</strong> A surface angling away from you produces a big depth difference between neighboring pixels even though nothing is actually in front of anything. <strong>Depth Grazing Correction</strong> uses the normals to work out how much of that difference is just the angle, and discount it. It's an approximation, so it often doesn't quite do enough, or it overcorrects. Measuring real curvature in Geometry Nodes would be the proper fix, at the cost of computation per mesh. See <a href="../future-plans/">Future Plans</a>.</p>
+<p><strong>Grazing Correction sits outside the threshold resolution compensation.</strong> It attenuates the detection signal rather than the threshold, so surfaces near a grazing angle can still detect a bit differently between resolutions even with Adaptive threshold scaling on. Surfaces facing the camera aren't affected.</p>
+<h2 id="version-specifics">Version specifics</h2>
+<ul>
+<li>Requires <strong>Blender 5.2+</strong>. Earlier 5.x used a different geometry nodes modifier input API and didn't have some nodes the tool uses.</li>
+<li><strong>AOV clamping:</strong> Blender clamps Color AOVs to 0 and above, which is a problem for anything needing negatives, like normals. The setup works around it by <strong>adding 1</strong> to some colors in the shader and <strong>subtracting it back off</strong> in the compositor. Worth knowing if you edit the AOVs by hand.</li>
+</ul>
+<hr />
+<p><strong>Related:</strong> <a href="../how-it-works/">How It Works</a> · <a href="../known-issues/">Known Issues</a> · <a href="../troubleshooting/">Troubleshooting</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.top", "content.code.copy", "toc.integrate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
