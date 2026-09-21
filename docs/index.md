@@ -110,7 +110,7 @@ Read these before buying:
 - **Getting started:** [Installation](installation.md) · [Quick Start](quick-start.md)
 - **Concepts:** [Infographics](infographics.md) · [How It Works](how-it-works.md) · [Line Types](line-types.md) · [Width & Scaling](width-and-scaling.md) · [Object & Custom IDs](custom-ids.md) · [Marked Edges](marked-edges.md) · [Distance Scaling](distance-scaling.md)
 - **Reference:** [The Addon Panel](addon-panel.md) · [Setup Tools](setup-tools.md) · [Authoring Tools](authoring-tools.md) · [Node Groups](node-line-art.md)
-- **Help:** [Troubleshooting](troubleshooting.md) · [Known Issues](known-issues.md) · [Future Plans](future-plans.md) · [Changelog](changelog.md)
+- **Help:** [Troubleshooting](troubleshooting.md) · [FAQ](faq.md) · [Known Issues](known-issues.md) · [Future Plans](future-plans.md) · [Changelog](changelog.md)
 
 Longer form guides and video walkthroughs are still being worked on, and will land over the coming weeks.
 

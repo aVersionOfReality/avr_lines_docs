@@ -65,7 +65,8 @@ nav:
   - Advanced:
       - Temporary Technical Notes: technical-notes.md
   - Help:
-      - Troubleshooting & FAQ: troubleshooting.md
+      - Troubleshooting: troubleshooting.md
+      - FAQ: faq.md
       - Known Issues: known-issues.md
       - Future Plans: future-plans.md
       - Changelog: changelog.md
