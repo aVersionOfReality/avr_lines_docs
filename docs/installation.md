@@ -95,7 +95,7 @@ For each object you want lines on:
 
 - Add the **Line_Art** group and connect the AOVs and the Depth pass to its Passes inputs.
 - Combine the **Lines** output with your render (usually an **Alpha Over** node).
-- Because film AA is off, add an **Anti-Aliasing** node for the main render. The lines have their own AA inside the group; a second AA pass over everything last doesn't hurt.
+- Because film AA is off, add an **Anti-Aliasing** node on the **main render**, before the Alpha Over. The lines have their own AA inside the group. Do not run SMAA on the combined image: high-contrast lines can hide weaker edges in the render. Threshold defaults to 0.1; 0.2 is often not enough once Filter Size is 0.
 - Note that the Anti-Aliasing node can blur the outermost pixels of the image. If you need a clean border, render slightly larger and crop. See [Known Issues](known-issues.md).
 - If you are supersampling (rendering large to scale down), put a **Scale** node last, after everything else. Type *Relative*, X and Y at 0.5, Sampling set to *Anisotropic*. See [Width & Scaling](width-and-scaling.md#downscaling-a-supersampled-render).
 
