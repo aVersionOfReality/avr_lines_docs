@@ -17,7 +17,7 @@ Start here if something looks wrong. The **Warnings** section of the add-on pane
 ### Lines are doubled, blurry, or too thick
 
 - **Anti-aliasing is probably still on.** Set Render → Film → **Filter Size = 0**. AA makes single edges detect multiple times. See [Technical Notes](technical-notes.md).
-- **Render still jagged after setup?** Lower the compositor Anti-Aliasing node's **Threshold**. See [Tuning the AA node](setup-tools.md#add-compositor-nodes).
+- **Render still jagged after setup?** Lower the compositor Anti-Aliasing node's **Threshold**, and try **Contrast Limit** around 2–3. See [Tuning the AA node](setup-tools.md#add-compositor-nodes).
 - **Lines look soft or the AA isn't good enough?** Supersample. Render at double resolution and scale down to 50% (0.5) the end of the compositor. See [Downscaling a supersampled render](width-and-scaling.md#downscaling-a-supersampled-render).
 - **Is it only along the edge of frame?** The compositor's Anti-Aliasing node blurs the outermost pixels, since its samples clamp back onto the border pixel. Render a little larger and crop. See [Known Issues](known-issues.md).
 - **A 1 px line renders 2 px.** That's the floor, not a bug. See [Line thickness and the 2 pixel floor](technical-notes.md#line-thickness-and-the-2-pixel-floor-for-coplanar-lines).
@@ -52,7 +52,6 @@ Start here if something looks wrong. The **Warnings** section of the add-on pane
 - **Did you run Set Marked Edge Boundaries?** The region data marked edges read is saved onto the mesh. Mark your edges, then run the tool. Run it again whenever you change which edges are marked.
 - **Is Use Marked Edges enabled?** It defaults to off, since it costs an attribute slot and some performance.
 - **Are some of the lines missing rather than all of them?** Check the console after running the tool. If it reports unresolved boundaries, those chains don't close properly and can't be told apart from their completion edges. See [Marked Edges](marked-edges.md#splitting-mixed-boundaries).
-- **Are they showing up but noisy, and only in the viewport?** Check whether any part of the camera frame is cut off by the edge of the viewport. That breaks the dimensions the compositor works from, which puts noise on marked edge lines. Frame the whole camera and it clears. See [Known Issues](known-issues.md#camera-and-viewport).
 
 
 
@@ -66,6 +65,16 @@ Start here if something looks wrong. The **Warnings** section of the add-on pane
 ### Custom ID lines are fuzzy, missing, or the whole area detects as lines
 
 - ID data can't be a gradient, and **vertex data interpolates**. Use Face/Face Corner attributes, or ramp shader-driven IDs into flat regions. A variety of problems can occur depending on what data is interpolated wrong and where. See [Line Types](line-types.md).
+
+
+
+### Whole chunks are missing from a line pass
+
+Not thin or fuzzy lines — entire sections of an otherwise correct line simply absent.
+
+- **Is anything non-mesh-based combined into the OBJ ID?** This is the usual cause. The OBJ ID channel is also used by the Jump Flood Expansion to tell whether two pixels sit on the same surface. Texture or shader data varies *across* a surface, so the expansion starts depth-sorting a surface against itself and rejects pixels as occluded, which stops the line expanding through them. Move that data to a **Custom ID**. See [The OBJ ID channel does a second job](custom-ids.md#the-obj-id-channel-does-a-second-job).
+- **The gap won't line up with the messy data.** The missing area is wherever the expansion needed to travel through a rejected pixel, which can be some distance from where the ID is actually varying. Don't rule this out just because the locations don't match.
+- **Quantizing or stepping the data won't help.** Any variation within a surface triggers it, however coarse the steps. The test is to disconnect that input entirely and re-render.
 
 
 

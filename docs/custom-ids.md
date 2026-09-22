@@ -25,9 +25,33 @@ The combining is done using the White Noise procedural texture. White Noise is d
 
 ## Object IDs
 
-Every object gets a unique random ID, so lines appear wherever different objects meet (or meet the background). This gives you silhouette-like outer lines. The Object ID line set is not inherently different from the Custom IDs except that the object ID is already loaded into it. It is used in the Jump Flood Expansion to help determine if areas are the same or different surfaces and avoid depth ambiguity that can occur between neighbors with similar depth. If you combine other ID attributes into it, these will also be used for this, which is generally good as long as they are also mesh based. If they are shader based and don't correspond to actual geoemtry edges (such as toon shading or a texture) it can get weird, so put those in a Custom ID instead.
+Every object gets a unique random ID, so lines appear wherever different objects meet (or meet the background). This gives you silhouette-like outer lines. The Object ID line set is not inherently different from the Custom IDs except that the object ID is already loaded into it.
 
 The **Treat Islands as Objects** option (Geo_Data) extends this: each connected mesh island becomes its own ID, so a single object's separate parts get boundary lines between them.
+
+### The OBJ ID channel does a second job
+
+Unlike the Custom IDs, the OBJ ID channel is **also read by the Jump Flood Expansion** to decide whether two pixels are on the same surface. Where the IDs match, the expansion treats them as one surface and skips depth sorting between them. Where they differ, it lets depth decide which line wins. That is what stops a curved surface from sorting against itself, and it is why colored lines and overlapping lines resolve correctly.
+
+This makes the channel sensitive to *what kind* of data you put in it:
+
+- **Mesh-based data is safe.** Object IDs, islands, material boundaries, face attributes — anything that changes only where there is a real geometry boundary. Combining these into the OBJ ID is fine and often useful.
+- **Shader-based or texture-based data is not.** Toon shading bands, procedural textures, painted textures, or anything that varies *across* a single surface. These make neighbouring pixels on the same surface read as different surfaces, which switches depth sorting on where it should be off.
+
+!!! warning "Symptom: chunks missing from a line pass"
+    If you combine texture or shader data into the OBJ ID, you can lose whole sections of otherwise-working lines. The expansion rejects pixels it thinks are occluded, so a seed cannot travel through, and the gap can appear somewhere other than where the data is varying.
+
+    If lines are disappearing in patches, check whether anything non-mesh-based is combined into the OBJ ID. Put that data in a **Custom ID** instead.
+
+Quantizing the data does not fix this. Any variation within a surface is enough, no matter how coarse the steps.
+
+### Putting everything in the OBJ ID
+
+Because **Combine with OBJ ID** accepts any ID source, you can fold your ID 1, 2 and 3 data into the OBJ ID channel and drive all of your lines from it. That is a valid approach, and it means every combined region also participates in surface sorting.
+
+If you do that, the object's own ID is no longer separately useful for lines — but you can write it into a Custom ID channel instead via **Mix Custom 1/2/3** in Shader_Data, so nothing is lost.
+
+The same caution applies: only combine data that corresponds to real geometry boundaries. This is a manual arrangement for now; a fuller separation of line regions from surface sorting is planned for a future version.
 
 ## Custom IDs
 

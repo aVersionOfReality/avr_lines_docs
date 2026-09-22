@@ -27,7 +27,7 @@ Opens a dialog of render-side toggles, all on by default:
 Splices an **Anti-Aliasing** node, an **Alpha Over**, and the **Line_Art** group into your compositor just before the output, wiring the Render Layers passes into the Line Art inputs. Anti-Aliasing runs on the render first (Threshold defaults to 0.1), then the lines are overlaid. If the scene has no compositor tree yet, it creates one.
 
 !!! note "Tuning the AA node"
-    The node is SMAA. It only smooths edges whose brightness differs enough to pass **Threshold**. The addon sets this to **0.1** (Blender's default is 0.2). Leave it if the render looks clean. If mesh edges or similar-brightness colors still stair-step, lower it a little. If textures or grain start to smear, raise it. If 0.1 is still not enough, [supersample](width-and-scaling.md#downscaling-a-supersampled-render).
+    The node is SMAA. It only smooths edges whose brightness differs enough to pass **Threshold**. The addon sets this to **0.1** (Blender's default is 0.2). Leave it if the render looks clean. If mesh edges or similar-brightness colors still stair-step, lower it. Setting Threshold to **0** often fixes some areas and hurts others, but low values like **0.01** can work well. If textures or grain start to smear, raise it. Also try **Contrast Limit** around **2–3**. 2.5 solved some problems on a cel shaded model. If that still isn't enough, [supersample](width-and-scaling.md#downscaling-a-supersampled-render).
 
 !!! note "The AA node and the image border"
     The Anti-Aliasing node can blur the outermost pixels of the image, because its samples run off the edge of frame and clamp back onto the border pixel. Render a little larger and crop if that matters. See [Known Issues](known-issues.md).

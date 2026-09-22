@@ -15,6 +15,7 @@ What goes into version 1.1 will depend on feedback to the 1.0 release. Here are 
 - Better options for pruning unused Attributes from materials.
 - Support for conventiently applying/baking some parts of the Geometry Nodes group to save on performance on complex meshes.
 - Improve the robustness of ID generation to avoid collisions.
+- Separate surface sorting from line regions. Right now the OBJ ID channel defines a line set *and* tells the Jump Flood Expansion which pixels share a surface, so only mesh-based data can safely go in it. Giving the expansion its own surface ID would let any ID channel carry any data, including textures and shading, without affecting occlusion.
 - Expanded Distance Scaling node group options to make it easier to get the results you want at a given range.
 - Add Color to the priority sorting system.
 - Improve Trace Completions in Set Marked Edge Boundaries operator.
