@@ -1,10 +1,14 @@
 # The Addon Panel
 
+*Video: [Warnings and compositor nodes (10:11)](https://youtu.be/Ejzm687bvzA?t=611) · [Basic options (13:23)](https://youtu.be/Ejzm687bvzA?t=803)*
+
 The panel title has a small **?** button on the right that opens this documentation.
 
 ![The aVersion_Lines panel](images/addon_panel_all-1.png){ width="584" }
 
 ## Warnings
+
+*Video: [Warnings and compositor nodes (10:11)](https://youtu.be/Ejzm687bvzA?t=611)*
 
 A collapsible section that lists anything wrong with the current setup, with a count in its header so you can see at a glance whether anything needs attention. Most clear automatically as you run the Setup Tools. Each entry below shows the message and what to do about it. The node-group checks are rename/duplicate tolerant, so a renamed or copied group still counts as present. 
 
@@ -46,6 +50,8 @@ A collapsible section that lists anything wrong with the current setup, with a c
 
 
 ## Line Options
+
+*Video: [Basic options (13:23)](https://youtu.be/Ejzm687bvzA?t=803)*
 
 Controls for the Compositor Node Group. The Thresholds and Width Scales are the inputs on the node group, placed here for convenience while working in other editors. The less used configuration options change connections inside the node group; the least used of these live in the **Detection, Scale, and Expansion Options** popover, while everything else is a collapsible section you can leave open while you work.
 
@@ -96,7 +102,7 @@ Everything the line system measures (FOV, focal length, adaptive-width scaling, 
 **Line Expansion (Jump Flood):**
 
 - **Color Mode:**
-  - *Varying Color:* Allows different color and thickness per object/material/pixel, sorted by depth priority. Uses the Color set in the Geometry Nodes or the Shader Nodes and expands it from the source pixel.
+  - *Varying Color:* Allows different color and thickness per object/material/pixel, sorted by depth priority. Uses the Color set in the Geometry Nodes or the Shader Nodes and expands it from the source pixel. That sort uses the Object ID as the mesh ID, so pixels with the same ID count as one surface. See [The OBJ ID channel does a second job](custom-ids.md#the-obj-id-channel-does-a-second-job).
   - *Uniform Color:* Outputs a mask only and colors it with the Uniform Color value in the compositor. Allows different thickness but does not expand color from the source pixel. The mask will use the Uniform Color, or can be used to mix colors in the Compositor.
 - **Uniform Color:**  Color used for Uniform Color mode.
 - **Fix Artifacts Pass:** Run an extra jump flood pass to fix jump flood artifacts, such as missing pixels inside a line. Moderate performance cost. Should only be necessary on very thick lines.

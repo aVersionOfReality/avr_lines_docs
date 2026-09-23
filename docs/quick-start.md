@@ -1,5 +1,11 @@
 # Quick Start
 
+<iframe src="https://www.youtube.com/embed/Ejzm687bvzA?start=581"
+        title="Getting started"
+        style="width:100%;max-width:860px;aspect-ratio:16/9;border:0;"
+        allowfullscreen>
+</iframe>
+
 The add-on's **Setup Tools** do every step for you; this page is just the order to run them in. For what each one does, see [Setup Tools](setup-tools.md).
 
 ## The steps

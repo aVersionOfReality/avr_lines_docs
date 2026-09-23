@@ -33,6 +33,7 @@ Start here if something looks wrong. The **Warnings** section of the add-on pane
 ### Z-fighting / flickering on colored lines
 
 - **Are the meshes intersecting there?** If two meshes pass through each other, the surfaces meet at the same depth and nothing can sort them, so the line that draws on top flickers. Precision won't help. Model the join or leave a gap instead of letting them interpenetrate. It disturbs other line types along that seam too.
+- **Colored lines sort using the Object ID.** Depth sorting compares pixels with different Object IDs. Matching IDs count as one surface. See [The OBJ ID channel does a second job](custom-ids.md#the-obj-id-channel-does-a-second-job).
 - **Is it happening away from any intersection?** Then it is half precision failing to separate depths that are merely close. Enable **Full compositor precision** (it doubles intermediate buffer memory).
 - **Is it only in the viewport?** For the precision case, that is expected: final renders already composite at full precision, so it is a preview artifact. Real intersections will still show up in the render.
 - Switching to **Uniform Color** hides all of this, since every line resolves to the same color. It is also faster, so it's a good option if your lines are one color anyway.

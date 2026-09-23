@@ -1,5 +1,7 @@
 # How It Works
 
+*Video: [Filter lines vs this (1:15)](https://youtu.be/Ejzm687bvzA?t=75) · [Inside the node graph (6:38)](https://youtu.be/Ejzm687bvzA?t=398) · [Anti-aliasing (36:23)](https://youtu.be/Ejzm687bvzA?t=2183)*
+
 !!! note "Everything here is about Blender"
     Comparisons and limitations on this page are specific to Blender, the tools that ship with it, and what can reasonably be built inside it. Other software solves some of these problems differently.
 
@@ -14,6 +16,8 @@ The tool finds edges by comparing each pixel to its neighbors (up, down, left, a
 Because it works on *data*, not geometry, you're not limited to silhouettes and creases (see [Line Types](line-types.md)).
 
 ## Strengths and Weaknesses
+
+*Video: [Filter lines vs this (1:15)](https://youtu.be/Ejzm687bvzA?t=75)*
 
 Most line art tools work the other way around. They analyse the mesh, build actual stroke geometry along the edges they find, and render that. Freestyle, Grease Pencil's Line Art modifier, and Pencil+ all do some version of this. Knowing where the two approaches split is the quickest way to tell whether this suits what you're doing.
 
@@ -36,6 +40,8 @@ Neither approach is better than the other, they're just good at opposite things.
 
 ## The pipeline
 
+*Video: [Inside the node graph (6:38)](https://youtu.be/Ejzm687bvzA?t=398)*
+
 Data flows through three node groups, in this order:
 
 1. **Geo_Data** *(Geometry Nodes modifier on your objects)* writes per-object data onto the mesh: object IDs, custom ID attributes, marked edges, and per-object width scales.
@@ -47,6 +53,8 @@ Data flows through three node groups, in this order:
 
 ## Why anti-aliasing has to be off
 
+*Video: [Anti-aliasing (36:23)](https://youtu.be/Ejzm687bvzA?t=2183)*
+
 Comparing neighboring pixels breaks down on anti-aliased data, and the solutions to this can't currently be built properly in Blender. AA blurs edges across several pixels, so a single edge gets detected multiple times. That means extra thickness, and worse, broken threshold detection (especially on normals). So the setup **disables Blender's film anti-aliasing** and re-adds it afterward with the compositor's AA node.
 
 The compositor's AA is not as good as native AA, and it can also blur the outermost pixels of the image, since its samples run off the edge of frame and get clamped back onto the border pixel. This is the tool's biggest quality trade-off.
@@ -55,7 +63,7 @@ The usual answer is to supersample: render larger than you need and scale down a
 
 ## Why the Depth pass has to be on
 
-Depth lines need depth, but it is used for more than that. Depth also drives **priority sorting**, so closer lines draw over further ones in colored mode, and it feeds **distance based width scaling**. Set Render Settings enables the Z pass for you.
+Depth lines need depth, but it is used for more than that. Depth also drives **priority sorting**, so closer lines draw over further ones in colored mode, and it feeds **distance based width scaling**. That sort uses the Object ID as the mesh ID, so pixels with the same ID count as one surface. See [The OBJ ID channel does a second job](custom-ids.md#the-obj-id-channel-does-a-second-job). Set Render Settings enables the Z pass for you.
 
 !!! note "Why no Normal pass?"
     The setup uses an AOV to carry its own Normal pass so that you can feed it different Custom Normals if you want. Normal Lines often don't work well with very smooth toon Normals, or you could even author an extra path with smoothing settings that do work well for them.

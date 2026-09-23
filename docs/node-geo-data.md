@@ -1,5 +1,7 @@
 # Geo_Data
 
+*Video: [Geo Data node (10:57)](https://youtu.be/Ejzm687bvzA?t=657)*
+
 `AVR_Lines: Geo_Data` is the **Geometry Nodes** group added as a modifier to your objects (or added within a new modifier). It sets up per-object line data (object IDs, custom ID attributes, marked edges) and per-object width scales that feed the shader and compositor.
 
 !!! tip
@@ -8,6 +10,8 @@
 ![The Geo_Data node group as a modifier](images/ref_nodes_Geo_Data-1.png){ width="660" }
 
 ## Geo_Data Node Group Parameters
+
+*Video: [Geo Data node (10:57)](https://youtu.be/Ejzm687bvzA?t=657)*
 
 - **Line Color:** Line color, used in Varying Color mode.
 - **Normal Threshold:** Overrides the Normal Threshold set in the compositor group for this object if above 0. At 0 or below, the compositor's threshold is used.

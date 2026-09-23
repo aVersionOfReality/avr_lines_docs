@@ -4,7 +4,7 @@
 
 **Screen-Space Extraction (SSE) Jump Flood line art for Blender's Compositor, with a node pipeline from Geometry Nodes > Material Nodes > Compositor, allowing data to be authored or altered at any step.**
 
-<video controls autoplay loop muted playsinline width="760"
+<video controls loop muted playsinline width="760"
        poster="images/turntable_16x9-1_poster.jpg"
        style="display:block;margin:1.2em auto;max-width:100%;height:auto;">
   <source src="images/turntable_16x9-1.mp4" type="video/mp4">
@@ -14,7 +14,7 @@
 
 ## Where to get it
 
-- **Gumroad**: coming soon
+- **Gumroad**: [aversionofreality.gumroad.com/l/avr_lines](https://aversionofreality.gumroad.com/l/avr_lines)
 - **Superhive**: coming soon
 
 ## Get Started
@@ -23,6 +23,12 @@
 - **[Quick Start](quick-start.md)**
 - **[How It Works](how-it-works.md)**
 - **[Infographics](infographics.md)**
+
+<iframe src="https://www.youtube.com/embed/Ejzm687bvzA"
+        title="aVersion_Lines guide"
+        style="width:100%;max-width:860px;aspect-ratio:16/9;border:0;"
+        allowfullscreen>
+</iframe>
 
 ---
 
@@ -44,7 +50,7 @@ This tool is inspired by the line art system from the [Malt render engine](https
 
 ---
 
-<video controls autoplay loop muted playsinline width="760"
+<video controls loop muted playsinline width="760"
        poster="images/scale_anim_16x9-1_poster.jpg"
        style="display:block;margin:1.2em auto;max-width:100%;height:auto;">
   <source src="images/scale_anim_16x9-1.mp4" type="video/mp4">
@@ -112,7 +118,7 @@ Read these before buying:
 - **Reference:** [The Addon Panel](addon-panel.md) · [Setup Tools](setup-tools.md) · [Authoring Tools](authoring-tools.md) · [Node Groups](node-line-art.md)
 - **Help:** [Troubleshooting](troubleshooting.md) · [FAQ](faq.md) · [Known Issues](known-issues.md) · [Future Plans](future-plans.md) · [Changelog](changelog.md)
 
-Longer form guides and video walkthroughs are still being worked on, and will land over the coming weeks.
+The guide video is in [Get Started](#get-started). Longer written guides will follow.
 
 ## Support
 

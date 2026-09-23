@@ -1,8 +1,12 @@
 # Object & Custom IDs
 
+*Video: [Custom IDs (17:24)](https://youtu.be/Ejzm687bvzA?t=1044) · [Closed boundaries (21:31)](https://youtu.be/Ejzm687bvzA?t=1291) · [Combining and mixing IDs (23:36)](https://youtu.be/Ejzm687bvzA?t=1416)*
+
 Depth and normal detection only go so far. Object IDs and Custom IDs let you draw lines wherever you define a region. Use them for any areas where you always want a line. This works for creating lines between different surfaces, and also detail lines on the same surface. ID lines give the best results and should be used for the majority of your lines. Use them to separate different parts of a character's outfit, or for sharp edges on a hardsurface mesh, or even for seams on clothing. And you can use the [advanced line set options](#advanced-line-set-options) to mix additional Normal and Depth lines into custom IDs to catch those sorts of areas while sharing the ID line set's width. See [Line Types](line-types.md) for more info.
 
 ## How IDs work
+
+*Video: [Closed boundaries (21:31)](https://youtu.be/Ejzm687bvzA?t=1291)*
 
 IDs are regions with a shared value. Lines are detected where those values are different. So you define the line by putting different values on either side of it. If you set every face of a mesh to have a different ID value, you'd get lines between every face. If you set half the mesh to have one value and the other half another, you'd get a line down the middle of the mesh, etc. But if you have a gradient, every pixel in it will detect as a line because there are differences between each neighboring pixel (so there must not be any gradients). What these values actually are makes no difference as long as they are flat values. The point is simply to identify different areas by them having different values. See [How It Works](how-it-works.md).
 
@@ -15,6 +19,8 @@ If you are using thick lines anyway, you can also work around the limitation by 
 ![A Surface ID pass, the lines it produces, and the two combined](images/info_id_to_lines-1.png){ width="860" }
 
 ### Combining IDs
+
+*Video: [Combining and mixing IDs (23:36)](https://youtu.be/Ejzm687bvzA?t=1416)*
 
 The Geo_Data and Shader_Data groups both have **Combine with…** inputs. When one is above 0, its value is **hashed into** the current ID, letting you merge multiple ID sources into a single line set. So you can define part of an ID on the mesh and part in the shader, and combine them.
 
@@ -54,6 +60,8 @@ If you do that, the object's own ID is no longer separately useful for lines —
 The same caution applies: only combine data that corresponds to real geometry boundaries. This is a manual arrangement for now; a fuller separation of line regions from surface sorting is planned for a future version.
 
 ## Custom IDs
+
+*Video: [Custom IDs (17:24)](https://youtu.be/Ejzm687bvzA?t=1044)*
 
 Three custom ID passes let you draw lines on regions you define. There are two places to author them, and you can combine both.
 

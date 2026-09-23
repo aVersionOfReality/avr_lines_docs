@@ -1,5 +1,11 @@
 # Installation
 
+<iframe src="https://www.youtube.com/embed/Ejzm687bvzA?start=584"
+        title="Installation"
+        style="width:100%;max-width:860px;aspect-ratio:16/9;border:0;"
+        allowfullscreen>
+</iframe>
+
 !!! note     You do not need the add-on to use the tool. The node groups work on their own. The addon helps setup and improves user experience. Most of the addon's fields are simply the inputs of the Compositor node group. But many change actual connections within the group, and this is difficult to do by hand. But it means that once a file is setup, you can disable the addon and still use it if you don't need to change any of those settings. This also means that render farms do not need the addon installed for everything to work. But keep in mind that the Compositor groups are an asset of the addon, and it violates the license to distribute them, even if the rest of the addon is not shared. See [Manual / Node-Only Setup](#manual-node-only-setup) below if you prefer to wire things by hand.
 
 The tool is a Blender **extension**, installed from disk.
@@ -9,7 +15,7 @@ The tool is a Blender **extension**, installed from disk.
 
 ## Where to get it
 
-- **Gumroad**: coming soon
+- **Gumroad**: [aversionofreality.gumroad.com/l/avr_lines](https://aversionofreality.gumroad.com/l/avr_lines)
 - **Superhive**: coming soon
 
 

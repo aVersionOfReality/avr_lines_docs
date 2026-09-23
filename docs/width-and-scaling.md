@@ -1,8 +1,12 @@
 # Width & Scaling
 
+*Video: [Width scaling (27:23)](https://youtu.be/Ejzm687bvzA?t=1643) · [Tapering (30:07)](https://youtu.be/Ejzm687bvzA?t=1807)*
+
 How thick your lines get and how to vary that per line type in the Geometry Nodes, Material, or Compositor.
 
 ## Base Width and per-type scales
+
+*Video: [Width scaling (27:23)](https://youtu.be/Ejzm687bvzA?t=1643)*
 
 There's one **base Width** (in the Line_Art group / addon panel), and a **Width Scale** for each line type (Normal, Depth, Object, Custom ID 1-3, Marked Edges).
 
@@ -28,6 +32,8 @@ The scale is set per line set in Geometry Nodes, passes to the material as an At
 Distance-from-camera scaling is a separate feature, see [Distance Scaling](distance-scaling.md).
 
 ## Width Cutoff and Minimum Width
+
+*Video: [Tapering (30:07)](https://youtu.be/Ejzm687bvzA?t=1807)*
 
 Both of these deal with lines that end up thinner than a pixel. **Width Cutoff runs first**, then Minimum Width.
 

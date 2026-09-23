@@ -1,5 +1,7 @@
 # Shader_Data
 
+*Video: [Shader Data node (11:56)](https://youtu.be/Ejzm687bvzA?t=716)*
+
 `AVR_Lines: Shader_Data` is the **shader** group added to your materials. It writes all the per-pixel data into AOVs (normals, thresholds, scales, IDs, colors) and lets you mix in per-material data before it's written. There are no outputs on this group because the outputs are the AOVs inside the group. Make sure you don't have two of the group in the same material. It can often be convenient to nest it inside your own nodegroup that is put into all your materials so that you can have global settings.
 
 You may not need everything in the group present in any given material. You can copy or ungroup Shader_Data and remove parts that material isn't using if needed. Since the group includes many attributes and eevee has a cap of 15, this will become necessary if your material already uses many. For example, if a material is not using any marked edges or ID passes, you could remove those frames from a copy of the group and save several attributes.
@@ -7,6 +9,8 @@ You may not need everything in the group present in any given material. You can 
 ![The Shader_Data node group in a material](images/ref_nodes_Shader_Data-1.png){ width="516" }
 
 ## Shader_Data Node Group Parameters
+
+*Video: [Shader Data node (11:56)](https://youtu.be/Ejzm687bvzA?t=716)*
 
 - **Mask Line Expansion:** Masks expanded lines. Use to keep lines from covering an area. This can also be done by mixing the output of the Compositor group in some way, but this is wired up for convenience as you'll often want to mask with material data. For example, if you have a high detail area like a character's eyes that you never want to be covered up. Or if you have other sources of line art, such as textures, and don't want new lines covering it.
 

@@ -1,5 +1,7 @@
 # Authoring Tools
 
+*Video: [Assign New ID (22:41)](https://youtu.be/Ejzm687bvzA?t=1361) · [Marked edges (24:34)](https://youtu.be/Ejzm687bvzA?t=1474)*
+
 The **Authoring Tools** are various scripts to help setup and manage things. These are one-shot python operators.
 
 ## Add Distance Scale Group
@@ -39,9 +41,13 @@ Generates a random face-region ID attribute (Color, Float, or Int) on each targe
 
 ## Assign New ID to Selection
 
+*Video: [Assign New ID (22:41)](https://youtu.be/Ejzm687bvzA?t=1361)*
+
 Assigns a fresh ID (distinct from the rest of the object) to your selected faces, writing to the active attribute. Run it repeatedly to build up an ID mask area by area.
 
 ## Set Marked Edge Boundaries
+
+*Video: [Marked edges (24:34)](https://youtu.be/Ejzm687bvzA?t=1474)*
 
 Saves the region data that [Marked Edge lines](marked-edges.md) read. Run it on a mesh after marking edges, and again whenever you change which edges are marked. The data is stored as a mesh, not recalculated live. The operator runs on all selected Objects in Object mode, or the selection if run in Edit mode.
 

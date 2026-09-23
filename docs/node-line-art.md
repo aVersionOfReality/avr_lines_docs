@@ -18,14 +18,14 @@
 The rendered data the group reads. The setup wires these from your Render Layers.
 
 - **Depth:** Z-depth pass input.
-- **mesh_ID:** Object/mesh ID AOV input.
+- **mesh_ID:** Object/mesh ID AOV input. This is the Object ID the expansion uses as the mesh ID when it depth-sorts colored lines. See [The OBJ ID channel does a second job](custom-ids.md#the-obj-id-channel-does-a-second-job).
 - **normals:** World-space normal AOV input.
 - **thresholds:** Per-pixel threshold AOV input (from Shader_Data).
 - **scales:** Per-pixel width-scale AOV input (from Shader_Data).
 - **custom_IDs:** Custom face-region ID AOV input.
 - **custom_scales:** Per-pixel custom-ID scale AOV input.
 - **marked:** Marked edge AOV input.
-- **RGB:** Line Color AOV input (Varying Color mode).
+- **RGB:** Line Color AOV input (Varying Color mode). Depth sorting of this color uses the mesh_ID input above.
 
 ## Thresholds
 

@@ -61,20 +61,16 @@ Which makes Blended a handy way to exempt a material from lines completely, and 
 
 ## Depth sorting and intersecting meshes
 
-Expansion works out which line is in front by comparing depth. Where two surfaces sit at the same depth there's nothing to compare, so the result is arbitrary and flickers as the camera moves.
+Expansion works out which line is in front by comparing depth between pixels with different Object IDs. Matching IDs count as one surface and skip that sort. Where two surfaces sit at the same depth there's nothing to compare, so the result is arbitrary and flickers as the camera moves.
 
 **Mesh intersections are the case that can't be fixed.** Where two meshes pass through each other the surfaces genuinely do meet at the same depth along that seam, so no amount of precision resolves it, and it disturbs other line types along there too. The fix is modelling. Join the meshes properly or leave a small gap rather than letting them clip through each other. Intersections cause trouble for any 3D line method that can see them, but it's especially noticeable with colored screen space lines because the noise it creates is at pixel level.
 
 **Half precision in the viewport widens that out to depths that are merely close**, since it can't separate nearby values reliably.
 
 !!! note "Full compositor precision"
-    The setup switches the **viewport** to Full precision. This is a different thing from the AOV storage below, it governs the compositor's own intermediate buffers.
+    The setup switches the **viewport** to Full precision. This is a different thing from the AOV storage below, it governs the compositor's own intermediate buffers. It only changes the viewport. On Auto, Blender already composites final renders at full precision and only drops to half for interactive work, so really this setting is about making the viewport match what you'll get out of a render. It does nothing for actual intersections, which are ambiguous at any precision.
 
-```
-It only changes the viewport. On Auto, Blender already composites final renders at full precision and only drops to half for interactive work, so really this setting is about making the viewport match what you'll get out of a render. It does nothing for actual intersections, which are ambiguous at any precision.
-
-Either way you notice this most in **Varying Color** mode, where the competing lines are different colors. In Uniform Color they both resolve to the same color, so the same ambiguity has nothing to show.
-```
+Either way you notice this most in **Varying Color** mode, where the competing lines are different colors. In Uniform Color they both resolve to the same color, so the same ambiguity has nothing to show. The Object ID is the mesh ID behind that sort. See [The OBJ ID channel does a second job](custom-ids.md#the-obj-id-channel-does-a-second-job).
 
 
 

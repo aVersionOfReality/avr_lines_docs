@@ -15,6 +15,10 @@ Support Discord and email are in the README that came with your download.
 
 ## Guide video
 
-This section is for answering questions people ask about the YouTube guide. I'll add them here as they come in. You can't properly edit a YouTube video after it's up, and the same few questions tend to show up in the comments over and over.
+<iframe src="https://www.youtube.com/embed/Ejzm687bvzA"
+        title="aVersion_Lines guide"
+        style="width:100%;max-width:860px;aspect-ratio:16/9;border:0;"
+        allowfullscreen>
+</iframe>
 
-*Nothing here yet.*
+This section is for answering questions people ask about the YouTube guide. I'll add them here as they come in. You can't properly edit a YouTube video after it's up, and the same few questions tend to show up in the comments over and over.

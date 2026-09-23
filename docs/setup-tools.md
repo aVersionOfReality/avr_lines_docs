@@ -1,10 +1,14 @@
 # Setup Tools
 
+*Video: [Getting started (9:41)](https://youtu.be/Ejzm687bvzA?t=581)*
+
 The **Setup Tools** popover contains the operators that add node groups to the file and then to your objects and materials, and set the proper settings. And handy options to update to new versions or remove everything from the file. Getting started is simply a matter of running the first 5 in order. See[Quick Start](quick-start.md)
 
 ![The Setup Tools popover](images/addon_panel_setup_tools-1.png){ width="523" }
 
 ## Append Node Groups
+
+*Video: [Getting started (9:41)](https://youtu.be/Ejzm687bvzA?t=581)*
 
 Brings the **Geo_Data**, **Shader_Data**, and **Line_Art** node groups into your file from the bundled asset. Groups already present are skipped. (The Distance_Scale groups come in with these as dependencies.)
 

@@ -1,10 +1,14 @@
 # Line Types
 
+*Video: [Normals (13:59)](https://youtu.be/Ejzm687bvzA?t=839) · [Depth (15:45)](https://youtu.be/Ejzm687bvzA?t=945) · [Object ID (16:48)](https://youtu.be/Ejzm687bvzA?t=1008)*
+
 Lines come from differences between neighboring pixels, so you can draw a line on *any* data that differs between regions. Several line types are set up by default for common data, plus three fully custom passes for anything else.
 
 ## The built-in line types
 
 ### Depth
+
+*Video: [Depth (15:45)](https://youtu.be/Ejzm687bvzA?t=945)*
 
 Detects where the distance between neighboring pixels changes. The **Depth Threshold** is how big that change must be. This cannot distinguish between depth differences between different areas and steep curvature. Depth Grazing Correction helps with this by using info from the Normals to try to detect slopes, but it often doesn't do enough or does too much.
 
@@ -15,6 +19,8 @@ Detects where the distance between neighboring pixels changes. The **Depth Thres
 
 ### Normal
 
+*Video: [Normals (13:59)](https://youtu.be/Ejzm687bvzA?t=839)*
+
 Detects the **angle difference** between neighboring surface normals, the same idea as auto-smooth edge splitting. The **Normal Threshold** runs 0 to 1 and is logarithmic, so each third of the slider covers a 10x range. Lower values pick up progressively subtler angles, which is why the useful settings are usually low. Tune it by eye rather than trying to work out an angle, the numbers don't correspond to degrees.
 
 ![Normal Lines](images/info1_normal-1.png){ width="860" }
@@ -24,9 +30,11 @@ Detects the **angle difference** between neighboring surface normals, the same i
 
 ### Object ID
 
+*Video: [Object ID (16:48)](https://youtu.be/Ejzm687bvzA?t=1008)*
+
 Each object gets a random unique ID generated in the Shader_Data group. This causes lines wherever objects overlap each other, or the background (which has ID -1 set in the World nodes). It's similar to a silhouette or contour pass, but not identical because it can create internal lines. These lines depend highly on the object layout of your scene. For example, on a character that is all one object these are functionally identical to Freestyle's External Contour line set or lines created from the Alpha mask. Whereas if each piece is its own object, these will have a lot of internal details.
 
-This makes the use of this line set somewhat arbitrary since it depends so much on your scene setup. But object IDs are also used under the hood in the Jump Flood Algorithm to help with priority sorting. It is fine to add more to object IDs and use this as a 4th Custom ID as more granularity can actually help. See [Object & Custom IDs](custom-ids.md) for how to add more into an ID group.
+This makes the use of this line set somewhat arbitrary since it depends so much on your scene setup. The Object ID is also the mesh ID the Jump Flood uses for priority sorting, which is what lets colored lines resolve by depth. See [The OBJ ID channel does a second job](custom-ids.md#the-obj-id-channel-does-a-second-job). It is fine to add more to object IDs and use this as a 4th Custom ID as more granularity can actually help. See [Object & Custom IDs](custom-ids.md) for how to add more into an ID group.
 
 !!! tip
     The Geo_Data group has a **Treat Islands as Objects** option, giving each connected mesh island its own ID so islands get boundary lines between them. This is often a quick way to get most internal lines you might want.
