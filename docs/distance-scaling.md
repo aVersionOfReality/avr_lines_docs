@@ -77,11 +77,9 @@ This means lines get thinner toward the edges of frame because of where they sit
 !!! note "Z Depth is material only, for now"
     Z Depth reads Camera Data directly in the shader and never needs the camera's position, so it costs nothing there.
 
-```
-The camera modes are geometry nodes only for the opposite reason. Geometry nodes read the Active Camera natively, but a shader can't. The only ways in are writing node values from Python or using a driver, and **both throw away the compiled material every time the camera moves**. You see that as surfaces flashing grey while you move around, which on a heavy scene can take seconds to recover from on every frame.
+    The camera modes are geometry nodes only for the opposite reason. Geometry nodes read the Active Camera natively, but a shader can't. The only ways in are writing node values from Python or using a driver, and **both throw away the compiled material every time the camera moves**. You see that as surfaces flashing grey while you move around, which on a heavy scene can take seconds to recover from on every frame.
 
-Geometry nodes could work out Z Depth too, by inverting the camera transform, transforming the position into camera space and negating Z. It just isn't set up in `Distance_Scale_GN` yet, and it would be extra computation there when the shader already has the value for free. Probably a later version.
-```
+    Geometry nodes could work out Z Depth too, by inverting the camera transform, transforming the position into camera space and negating Z. It just isn't set up in `Distance_Scale_GN` yet, and it would be extra computation there when the shader already has the value for free. Probably a later version.
 
 ---
 

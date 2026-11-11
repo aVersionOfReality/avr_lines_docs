@@ -49,9 +49,7 @@ They only affect the per-line-set scales (Normal, Depth, Object, Custom ID 1–3
 !!! warning "This changes flat masks too, not just tapers"
     A Power applies to the whole scale value, and it can't tell a taper from a mask you're using for general thickness control. If you paint an area at a flat 0.5 to make lines thinner there, an exponent of 0.5 turns that into 0.707 and the area gets thicker. So if you use flat vertex groups that way, leave these at 1 and put a Power node on the gradient in your own material instead, where you can apply it only to the thing you meant to taper.
 
-```
-Separating tapering from thickness properly is planned, but it needs the scale inputs reworked. So these aren't exposed in the addon panel yet, but are there if you need them (but will get their values overwritten if you update the node group. Expose them as inputs if you're using them.)
-```
+    Separating tapering from thickness properly is planned, but it needs the scale inputs reworked. So these aren't exposed in the addon panel yet, but are there if you need them (but will get their values overwritten if you update the node group. Expose them as inputs if you're using them.)
 
 
 

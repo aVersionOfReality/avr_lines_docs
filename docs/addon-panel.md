@@ -150,11 +150,9 @@ A collapsible sub-panel, closed by default. Because it is docked rather than a p
 !!! note "Inclusion Options"
     Each channel (the line set's own edge, Depth, Normal) has a role: **Off** ignores it, **Include** adds it to the line set, **Mask** keeps the line set only where that channel also detects. When several channels are set to Mask, the line survives only where all of them detect. Use Mask for targeted gap fillers.
 
-```
-Depth and Normal channels also have a threshold source: **Varying Threshold** (default) uses the main Depth/Normal threshold, which can vary across the mesh because it comes from Geometry Nodes and the material. **Uniform Threshold** uses the single value below it instead, which greys out under Varying.
+    Depth and Normal channels also have a threshold source: **Varying Threshold** (default) uses the main Depth/Normal threshold, which can vary across the mesh because it comes from Geometry Nodes and the material. **Uniform Threshold** uses the single value below it instead, which greys out under Varying.
 
-**Depth** and **Normal** at the bottom of the list are the same thing in reverse. The main passes get the same combine stage, so you can mask Depth by an ID rather than the other way round. They add a dropdown for which ID to combine with, and only carry a threshold for the *other* channel, since their own is up in Thresholds.
-```
+    **Depth** and **Normal** at the bottom of the list are the same thing in reverse. The main passes get the same combine stage, so you can mask Depth by an ID rather than the other way round. They add a dropdown for which ID to combine with, and only carry a threshold for the *other* channel, since their own is up in Thresholds.
 
 ---
 
