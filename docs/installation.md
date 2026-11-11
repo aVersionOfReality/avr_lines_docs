@@ -16,7 +16,7 @@ The tool is a Blender **extension**, installed from disk.
 ## Where to get it
 
 - **Gumroad**: [aversionofreality.gumroad.com/l/avr_lines](https://aversionofreality.gumroad.com/l/avr_lines)
-- **Superhive**: coming soon
+- **Superhive**: [superhivemarket.com/products/aversion_lines](https://superhivemarket.com/products/aversion_lines)
 
 
 
