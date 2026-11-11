@@ -6,12 +6,12 @@
         allowfullscreen>
 </iframe>
 
-!!! note     You do not need the add-on to use the tool. The node groups work on their own. The addon helps setup and improves user experience. Most of the addon's fields are simply the inputs of the Compositor node group. But many change actual connections within the group, and this is difficult to do by hand. But it means that once a file is setup, you can disable the addon and still use it if you don't need to change any of those settings. This also means that render farms do not need the addon installed for everything to work. But keep in mind that the Compositor groups are an asset of the addon, and it violates the license to distribute them, even if the rest of the addon is not shared. See [Manual / Node-Only Setup](#manual-node-only-setup) below if you prefer to wire things by hand.
+!!! note     You do not need the add-on to use the tool. The node groups work on their own. The addon helps setup and improves user experience. Most of the addon's fields are simply the inputs of the Compositor node group. But many change actual connections within the group, and this is difficult to do by hand. But it means that once a file is setup, you can disable the addon and still use it if you don't need to change any of those settings. This also means that render farms do not need the addon installed for everything to work. Since 1.0.1 the compositor group reads the scene camera itself, so lens, clip end and resolution changes come through with the addon off too. The exception is a Sensor Fit other than Auto, which still needs the addon. Files set up with 1.0.0 need **Update Nodes** first. But keep in mind that the Compositor groups are an asset of the addon, and it violates the license to distribute them, even if the rest of the addon is not shared. See [Manual / Node-Only Setup](#manual-node-only-setup) below if you prefer to wire things by hand.
 
 The tool is a Blender **extension**, installed from disk.
 
 !!! note "Blender version"
-    Requires **Blender 5.2 or newer**.
+    Requires **Blender 5.2 or newer**. Tested on 5.2 and 5.3.
 
 ## Where to get it
 
@@ -72,6 +72,7 @@ Add these view-layer AOVs with these **exact names**, all type **Color**:
 | `AVR_lines_custom_IDs`    | Color |
 | `AVR_lines_custom_scales` | Color |
 | `AVR_lines_marked`        | Color |
+| `AVR_lines_marked_tags`   | Color |
 | `AVR_lines_RGB`           | Color |
 
 
@@ -103,6 +104,7 @@ For each object you want lines on:
 - Combine the **Lines** output with your render (usually an **Alpha Over** node).
 - Because film AA is off, add an **Anti-Aliasing** node on the **main render**, before the Alpha Over. The lines have their own AA inside the group. Do not run SMAA on the combined image: high-contrast lines can hide weaker edges in the render. Threshold defaults to 0.1; 0.2 is often not enough once Filter Size is 0. If edges still stair-step, see [Tuning the AA node](setup-tools.md#add-compositor-nodes).
 - Note that the Anti-Aliasing node can blur the outermost pixels of the image. If you need a clean border, render slightly larger and crop. See [Known Issues](known-issues.md).
+- On **Blender 5.3** the compositor is a stack of effects (Properties > Compositor & Effects), and the group can go in any effect's tree. The addon gives it a separate effect at the bottom of the stack: Group Input brings in the image from the effects above, a Render Layers node inside supplies the passes, and the result goes to Group Output.
 - If you are supersampling (rendering large to scale down), put a **Scale** node last, after everything else. Type *Relative*, X and Y at 0.5, Sampling set to *Anisotropic*. See [Width & Scaling](width-and-scaling.md#downscaling-a-supersampled-render).
 
 See also: [How It Works](how-it-works.md) · [Setup Tools](setup-tools.md) · [Technical Notes](technical-notes.md)

@@ -49,7 +49,7 @@ Data flows through three node groups, in this order:
 3. **Line_Art** *(compositor group)* reads those AOVs plus the Depth pass, detects the lines, expands them to the right width, and outputs the final line image.
 
 !!! note "Why AOVs?"
-    AOVs are how we can get additional data into the compositor. Eevee supports them in the viewport in 5.2, but Cycles does not yet.
+    AOVs are how we can get additional data into the compositor. Eevee supports them in the viewport, but Cycles does not yet.
 
 ## Why anti-aliasing has to be off
 

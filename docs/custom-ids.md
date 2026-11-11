@@ -41,7 +41,7 @@ Unlike the Custom IDs, the OBJ ID channel is **also read by the Jump Flood Expan
 
 This makes the channel sensitive to *what kind* of data you put in it:
 
-- **Mesh-based data is safe.** Object IDs, islands, material boundaries, face attributes — anything that changes only where there is a real geometry boundary. Combining these into the OBJ ID is fine and often useful.
+- **Mesh-based data is safe.** Object IDs, islands, material boundaries, face attributes. Anything that changes only where there is a real geometry boundary. Combining these into the OBJ ID is fine and often useful.
 - **Shader-based or texture-based data is not.** Toon shading bands, procedural textures, painted textures, or anything that varies *across* a single surface. These make neighbouring pixels on the same surface read as different surfaces, which switches depth sorting on where it should be off.
 
 !!! warning "Symptom: chunks missing from a line pass"
@@ -55,7 +55,7 @@ Quantizing the data does not fix this. Any variation within a surface is enough,
 
 Because **Combine with OBJ ID** accepts any ID source, you can fold your ID 1, 2 and 3 data into the OBJ ID channel and drive all of your lines from it. That is a valid approach, and it means every combined region also participates in surface sorting.
 
-If you do that, the object's own ID is no longer separately useful for lines — but you can write it into a Custom ID channel instead via **Mix Custom 1/2/3** in Shader_Data, so nothing is lost.
+If you do that, the object's own ID is no longer separately useful for lines. But you can write it into a Custom ID channel instead via **Mix Custom 1/2/3** in Shader_Data, so nothing is lost.
 
 The same caution applies: only combine data that corresponds to real geometry boundaries. This is a manual arrangement for now; a fuller separation of line regions from surface sorting is planned for a future version.
 

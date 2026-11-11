@@ -96,7 +96,8 @@ Depth and Normal lines read data that varies pixel to pixel, which is what makes
 
 ## Version specifics
 
-- Requires **Blender 5.2+**. Earlier 5.x used a different geometry nodes modifier input API and didn't have some nodes the tool uses.
+- Requires **Blender 5.2+**, tested on 5.2 and 5.3. Earlier 5.x used a different geometry nodes modifier input API and didn't have some nodes the tool uses.
+- **Blender 5.3** makes the compositor a stack of effects. The addon puts the lines in their own **AVR Lines** effect at the bottom, and finds them by whichever effect holds the Line_Art group, so other effects can go above it. A 5.3 file opened in 5.2 only keeps the first effect. See [Known Issues](known-issues.md).
 - **AOV clamping:** Blender clamps Color AOVs to 0 and above, which is a problem for anything needing negatives, like normals. The setup works around it by **adding 1** to some colors in the shader and **subtracting it back off** in the compositor. Worth knowing if you edit the AOVs by hand.
 
 ---

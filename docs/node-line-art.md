@@ -44,6 +44,10 @@ See [Line Types](line-types.md) for what these mean in practice.
 
     **Depth Grazing Correction sits outside this.** It attenuates the detection signal rather than the threshold, so surfaces near the grazing angle can still detect somewhat differently between resolutions even in Adaptive mode.
 
+## Camera
+
+The group reads the scene camera on its own, through Active Camera and Camera Info nodes: the projection for pixel size, the focal length for Adaptive width, and the clip end for the expansion's background depth. So node-only setups get correct widths and thresholds without the addon. The exception is Sensor Fit set to Horizontal or Vertical, since Camera Info only gives the effective fit, so `fit_code` is still written by the addon. Before 1.0.1 all of these were Value nodes the addon wrote.
+
 ## Width Scales
 
 See [Width & Scaling](width-and-scaling.md).

@@ -30,6 +30,8 @@ Opens a dialog of render-side toggles, all on by default:
 
 Splices an **Anti-Aliasing** node, an **Alpha Over**, and the **Line_Art** group into your compositor just before the output, wiring the Render Layers passes into the Line Art inputs. Anti-Aliasing runs on the render first (Threshold defaults to 0.1), then the lines are overlaid. If the scene has no compositor tree yet, it creates one.
 
+Blender 5.3 is different, since its compositor is a stack of effects. There the lines get their own **AVR Lines** effect at the bottom of the stack (Properties > Compositor & Effects), and whatever is above it feeds into it. **Batch Cleanup** takes that effect out again.
+
 !!! note "Tuning the AA node"
     The node is SMAA. It only smooths edges whose brightness differs enough to pass **Threshold**. The addon sets this to **0.1** (Blender's default is 0.2). Leave it if the render looks clean. If mesh edges or similar-brightness colors still stair-step, lower it. Setting Threshold to **0** often fixes some areas and hurts others, but low values like **0.01** can work well. If textures or grain start to smear, raise it. Also try **Contrast Limit** around **2–3**. 2.5 solved some problems on a cel shaded model. If that still isn't enough, [supersample](width-and-scaling.md#downscaling-a-supersampled-render).
 
@@ -53,11 +55,11 @@ Adds the **Shader_Data** group to the materials on your selected objects, so the
 
 ## Update Nodes
 
-Replaces the bundled groups with fresh copies from the asset file while **preserving your current parameter values**. Use it after updating the add-on. Options let you choose Compositor / Shader / Geo, and whether to also update **renamed or duplicated** copies of the groups.
+Replaces the bundled groups with fresh copies from the asset file while **preserving your current parameter values**. Use it after updating the add-on. Options let you choose Compositor / Shader / Geo, and whether to also update **renamed or duplicated** copies of the groups. The **Warnings** section tells you when a file's groups are older than the addon's, and the dialog lists the addon's version next to the version of each group in the file.
 
 ## Batch Cleanup
 
-Opens a dialog to remove what the add-on added (modifiers, shader groups, compositor setup, node-group datablocks, AOVs) and to reset render settings to defaults. Tick what you want removed.
+Opens a dialog to remove what the add-on added (modifiers, shader groups, compositor setup (the AVR Lines effect on 5.3), node-group datablocks, AOVs) and to reset render settings to defaults. Tick what you want removed.
 
 !!! tip
     Open the system console before running any of these. Each prints exactly what it changed.

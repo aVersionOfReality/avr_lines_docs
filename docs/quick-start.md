@@ -10,11 +10,11 @@ The add-on's **Setup Tools** do every step for you; this page is just the order 
 
 ## The steps
 
-Open the **aV_Line Art** N-panel → **Tools** → **[Setup Tools](setup-tools.md)**, and run these in order. **Warnings** will clear as you go.
+Open the **aVersion_Lines** N-panel → **Tools** → **[Setup Tools](setup-tools.md)**, and run these in order. **Warnings** will clear as you go.
 
 1. **Append Node Groups** brings the AVR_Lines node groups into your file.
 2. **Set Render Settings** enables the Depth pass, turns off anti-aliasing (Filter Size 0), sets the compositor to GPU, and creates the AOVs. Leave the defaults on for a first run.
-3. **Add Compositor Nodes** splices the Line_Art group into your compositor before the output, along with the anti-aliasing node. If the scene has no compositor tree, it makes one.
+3. **Add Compositor Nodes** splices the Line_Art group into your compositor before the output, along with the anti-aliasing node. If the scene has no compositor tree, it makes one. On 5.3 it adds its own **AVR Lines** effect at the bottom of the compositor stack instead (Properties > Compositor & Effects).
 4. **Add Geometry Node Group** adds the Geo_Data modifier to your selected objects.
 5. **Add AOV Group to Materials** adds the Shader_Data group to those objects' materials.
 
@@ -25,7 +25,7 @@ Enter Active Camera view or do a full F12 render and you should have lines. By d
 
 ## Undoing it
 
-The **Batch Cleanup** button (Tools → [Authoring Tools](authoring-tools.md)) opens a dialog to remove the added node groups, modifiers, materials, AOVs, and to reset render settings. Tick what you want removed and run it.
+The **Batch Cleanup** button (Tools → [Setup Tools](setup-tools.md#batch-cleanup)) opens a dialog to remove the added node groups, modifiers, materials, AOVs, and to reset render settings. Tick what you want removed and run it.
 
 ---
 

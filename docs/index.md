@@ -63,11 +63,11 @@ switched on and off. Every change here is a parameter in the nodes.</em></p>
 
 ## Requirements
 
-- **Blender 5.2 or newer.** The addon uses compositor and geometry nodes that don't exist in earlier versions.
+- **Blender 5.2 or newer.** Tested on 5.2 and 5.3. The addon uses compositor and geometry nodes that don't exist in earlier versions.
 - **EEVEE.** The line data uses AOVs, which are only supported in the viewport in EEVEE. So it doesn't work in the viewport in Cycles. Full renders should work properly in Cycles, but that has not been put through practical testing yet. This has been an EEVEE focused tool for the first version, and Cycles will get more attention going forward.
 - **A GPU that runs EEVEE and the GPU compositor.** The compositor runs on the GPU by default and is far slower on CPU. This tool should technically work on the CPU, but its so slow I wouldn't bother.
 - **4 GB VRAM minimum, 8 GB recommended.** On low end cards, the compositor may spill into system memory at very high resolutions, which will still work but slows down a lot. 8 GB is comfortable for 4K. Heavy additional compositing in the same scene (Denoise, Glare, large Blur) competes for the same memory and matters more than resolution alone.
-- **Room in your materials.** EEVEE allows at most 15 attributes per material, and the addon's shader group uses 6 of them. That leaves roughly 8 for your own attributes (including UV maps). Depending on your own setup this could get tight if you're using a lot of your own. But the limit can be worked around with packing your data, or even baking the line attributes to textures. The panel warns you before you hit the limit.
+- **Room in your materials.** EEVEE allows at most 14 attributes per material, and the addon's shader group uses 6 of them (5 with marked edges off). That leaves 8 for your own attributes (including UV maps). Depending on your own setup this could get tight if you're using a lot of your own. But the limit can be worked around with packing your data, or even baking the line attributes to textures. The panel warns you before you hit the limit.
 
 !!! warning "Anti-aliasing has to be off"
     Detection compares neighboring pixels, so film anti-aliasing has to be disabled (Filter Size 0) and re-added afterwards with the compositor's Anti-Aliasing node. That isn't as good as native AA and can cost some quality. Future compositor updates should fix this. See [Known Issues](known-issues.md).

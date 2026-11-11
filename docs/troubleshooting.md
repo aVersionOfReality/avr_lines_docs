@@ -7,7 +7,7 @@ Start here if something looks wrong. The **Warnings** section of the add-on pane
 ### No lines at all
 
 - **Are you in a Cycles viewport?** AOVs are only written in the viewport by EEVEE, so a Cycles viewport has no line data to detect from. See [Engine support](#engine-support).
-- Was **Add Compositor Nodes** run? The Line_Art group has to be wired into the compositor.
+- Was **Add Compositor Nodes** run? The Line_Art group has to be wired into the compositor. On 5.3, look for the **AVR Lines** effect in Properties > Compositor & Effects.
 - Is the **Depth pass** enabled and are the **AOVs** created? (Run **Set Render Settings**.)
 - Are you in a context that shows the compositor, such as camera view or a **Rendered viewport** with the viewport compositor set to Always?
 - Check the **Warnings** section, which names most of these directly.
@@ -26,7 +26,7 @@ Start here if something looks wrong. The **Warnings** section of the add-on pane
 
 ### Line width looks wrong in the viewport
 
-- Width scaling and distance scaling use a camera's FOV. In **Auto/Active** camera source, that's the *scene* camera, so viewport width is only correct when looking through it, filling the screen. See [Known Issues](known-issues.md).
+- Width scaling and distance scaling use the *scene* camera's FOV, so viewport width is only correct when looking through it, filling the screen. See [Known Issues](known-issues.md).
 
 
 
@@ -71,7 +71,7 @@ Start here if something looks wrong. The **Warnings** section of the add-on pane
 
 ### Whole chunks are missing from a line pass
 
-Not thin or fuzzy lines — entire sections of an otherwise correct line simply absent.
+Not thin or fuzzy lines. Entire sections of an otherwise correct line simply absent.
 
 - **Is anything non-mesh-based combined into the OBJ ID?** This is the usual cause. The OBJ ID channel is also used by the Jump Flood Expansion to tell whether two pixels sit on the same surface. Texture or shader data varies *across* a surface, so the expansion starts depth-sorting a surface against itself and rejects pixels as occluded, which stops the line expanding through them. Move that data to a **Custom ID**. See [The OBJ ID channel does a second job](custom-ids.md#the-obj-id-channel-does-a-second-job).
 - **The gap won't line up with the messy data.** The missing area is wherever the expansion needed to travel through a rejected pixel, which can be some distance from where the ID is actually varying. Don't rule this out just because the locations don't match.
@@ -87,30 +87,38 @@ Everything else should work in Cycles, but it has not been through practical tes
 
 ### Material attribute limit
 
-EEVEE can bind at most **15 attributes per material**. Using more doesn't necessarily show any error. Often data just gets dropped and you may not notice right away.
+EEVEE can bind at most **14 attributes per material**. One more and the whole material fails to compile, so every attribute in it reads 0. The only sign is a "uses too many attributes" message in the console.
 
-"Attributes" means anything from the mesh: Attribute nodes, UV maps, color attributes, an Image Texture with nothing plugged into its Vector input (as that implicitly uses a UV map), Normal Map and Tangent nodes. Two nodes reading the *same* attribute only cost one slot.
+"Attributes" means anything read from the mesh: Attribute nodes, UV maps, color attributes, and nodes that read mesh data behind the scenes. Two nodes reading the *same* attribute only cost one slot. The hidden costs:
 
-`AVR_Lines: Shader_Data` **uses 6 of them** (`AVR_lines_color`, `AVR_lines_scale`, `AVR_lines_thresholds`, `AVR_lines_ID_mesh`, `AVR_lines_ID_scales`, `AVR_lines_marked`), plus one built-in. So on a material with the group added you have roughly **8 slots left** for your own setup. That is plenty for most work, but may get tight for some styles.
+- **UV Map** node, or an **Image Texture** with an image and nothing plugged into its Vector input (it reads the default UV map): 1.
+- **Procedural textures** (Noise, Voronoi, Wave and so on) with nothing in Vector: 1, for the Generated coordinates they fall back to.
+- **Texture Coordinate:** 1, or 2 if you use its Generated output.
+- **Normal Map** in Tangent Space: 1.
+- **Geometry** Position and Normal, and **Object** or **Instancer** attributes: free.
 
-The add-on warns when a Shader_Data material reaches 13 or more.
+Only nodes that feed through to the Material Output or an AOV count, even inside node groups.
+
+`AVR_Lines: Shader_Data` **uses 6 of them** (`AVR_lines_color`, `AVR_lines_scale`, `AVR_lines_thresholds`, `AVR_lines_ID_mesh`, `AVR_lines_ID_scales`, `AVR_lines_marked`), or 5 with **Use Marked Edges** off. So on a material with the group added you have **8 slots left** for your own setup (9 with marked edges off). That is plenty for most work, but may get tight for some styles.
+
+The add-on warns when a Shader_Data material reaches 12 or more.
 
 **What to do if you hit the limit**
 
 - **Reuse UV maps.** Several Image Textures sharing one UV map cost one slot; each extra UV map costs another.
 - **Consolidate Attribute nodes.** Reading the same attribute in several places is free; reading many different ones is not.
 - **Pack data into unused channels.** A color attribute carries four values; three separate float attributes cost three slots.
-- **Turn off line features you are not using.** Disabling **Use Marked Edges** clears the `AVR_lines_marked` attribute from the group, giving that slot back across every material. It also stops the two marked AOVs being written.
-- **Delete unused Attribute nodes from the group by hand, or unset their attribute.** Make a new copy of the group for that specific material first, or expand the group. Note that *disconnecting* them is not enough. See below.
+- **Turn off line features you are not using.** Disabling **Use Marked Edges** disconnects the two marked AOVs in the group, which gives the `AVR_lines_marked` slot back across every material.
+- **Disconnect or delete unused Attribute nodes in the group.** Make a new copy of the group for that specific material first, or expand the group. Clearing the attribute name doesn't work, because an empty name reads the default UV map instead.
 - **Bake your attributes to textures.** Unless they need to update every frame (such as an attribute calculated by geometry nodes), then they can just be an image texture.
 
-**Why disconnecting a node isn't enough**
+**Disconnecting is enough**
 
-Inside a node group, EEVEE runs every node whether or not its output goes anywhere, and its unused-node cleanup only ever looks at the top level of a material. So an Attribute node sitting unconnected inside `Shader_Data` still claims its slot. To actually free it, the node has to be removed, or its attribute name cleared. Per-material control over this is planned for a later version. If you expand the Shader_Data group so that the Attribute node is at the top level in the material, then it will cull properly if disconnected.
+EEVEE expands node groups into the material before compiling it, then drops anything that doesn't reach the output or an AOV. So an Attribute node left unconnected inside a copy of `Shader_Data` costs nothing. (I had this wrong in 1.0. It was true of Blender before 5.0.)
 
 **A note on the count**
 
-The reported number is a close estimate that leans slightly low: it counts the named attributes you control, but not every built-in that other nodes request behind the scenes. A material can therefore sit a little above the number shown.
+The count follows what EEVEE compiles, and matched it exactly in my tests. The one gap: EEVEE also drops the unused side of a Float or Vector Mix, or a Mix Shader, when its factor is a fixed 0 or 1, and the count doesn't. So it can read a little high there.
 
 ---
 
