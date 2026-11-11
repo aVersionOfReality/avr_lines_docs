@@ -55,7 +55,7 @@ Adds the **Shader_Data** group to the materials on your selected objects, so the
 
 ## Update Nodes
 
-Replaces the bundled groups with fresh copies from the asset file while **preserving your current parameter values**. Use it after updating the add-on. Options let you choose Compositor / Shader / Geo, and whether to also update **renamed or duplicated** copies of the groups. The **Warnings** section tells you when a file's groups are older than the addon's, and the dialog lists the addon's version next to the version of each group in the file.
+Replaces the bundled groups with fresh copies from the asset file while **preserving your current parameter values**. Use it after updating the add-on. Options let you choose Compositor / Shader / Geo, and whether to also update **renamed or duplicated** copies of the groups. The **Warnings** section tells you when a file's groups are older than the addon's, and the dialog lists the addon's version next to the version of each group in the file. See [Updating](installation.md#updating) for the whole process.
 
 ## Batch Cleanup
 

@@ -38,6 +38,18 @@ Open the **N-panel** in the 3D Viewport (press N) and select the **aVersion_Line
 
 Next: **[Quick Start](quick-start.md)** to get lines on screen.
 
+## Updating
+
+Download the new `.zip` from wherever you bought it and install it the same way, with **Install from Disk…**. It replaces the old version, so you don't need to uninstall first, and your addon preferences are kept. If the panel acts strangely afterwards, restart Blender.
+
+That updates the addon, but not the node groups already saved in your files. Each file keeps the groups it was set up with, and they keep working with the new addon. To bring a file up to date:
+
+1. Save a copy of the file first.
+2. Open it. If its node groups are older than the addon's, the **Warnings** section says so.
+3. Run **Setup Tools → [Update Nodes](setup-tools.md#update-nodes)**. The dialog shows the version of each group in the file next to the addon's. Leave all three ticked unless you have a reason not to.
+
+Update Nodes keeps the values on the groups' inputs, but anything you changed *inside* a group, or inputs you added to it, gets replaced by the new version. If you've made your own edited copy of a group (a trimmed `Shader_Data` for one material, say), leave **Also Update Renamed / Duplicated Groups** off, which is the default. Your copy won't be overwritten, it just stays on the old version.
+
 ---
 
 
